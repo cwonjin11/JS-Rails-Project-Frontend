@@ -3,15 +3,13 @@ console.log("where is my dinosaurs");
 
 
 
-class Dinosaur{
+class Dinosaur{    //creating dino for the frontend object
 
 
-    static all = []
-    ////  state😏🗃 of our Actors  -- On the Frontend
-    ////  similar to  (@@all)
+    static all = []     ////  state😏🗃 of our Actors  -- On the Frontend    ////  similar to  (@@all)
 
-
-    constructor(name, imageURL, period, diets, height, length, weight, offense, defense){
+    // whenever we need to add somthing. To pass as whole object, use curl bracket{} for the attributes
+    constructor({name, imageURL, period, diets, height, length, weight, offense, defense}){
 
             this.name = name,
             this.image = imageURL,
@@ -43,7 +41,7 @@ class Dinosaur{
 
 
 }
-const allosaurus = new Dinosaur("Allosaurus", "https://www.google.com/search?sxsrf=ALeKk016aMSvhfNfUlk_i-WtS1yT14DukA:1623333394135&q=allosaurus+dinosaur&tbm=isch&source=iu&ictx=1&tbs=simg:CAESlwIJdQqiEbZqgk8aiwILELCMpwgaOgo4CAQSFPoL9Cu3GtgYkQ3bO7klri_16P68-GhqaxAGnIb3cIhvewM86KqINOZkvp6txaMOAuiAFMAQMCxCOrv4IGgoKCAgBEgRMKiD7DAsQne3BCRqrAQohCg1hbmltYWwgZmlndXJl2qWI9gMMCgovbS8waDhtN2NzCicKEXR5cmFubm9zYXVydXMgcmV42qWI9gMOCgwvZy8xaGZfY245azIKHwoMY2FuaW5lIHRvb3Ro2qWI9gMLCgkvbS8wMWN2ODQKHAoJdGhlcm9wb2Rz2qWI9gMLCgkvbS8wMXJ2bmQKHgoMdmVsb2NpcmFwdG9y2qWI9gMKCggvbS8wN3p5MQw&fir=zkZiGE3GWdS5TM%252C2lQNXIOpCtZfdM%252C_&vet=1&usg=AI4_-kSQu60LE1pveyZ6sBa0OcvpGf-JQQ&sa=X&ved=2ahUKEwidorySnI3xAhUQh-AKHflDCAkQ9QF6BAgWEAE#imgrc=zkZiGE3GWdS5TM", "late Jurassic", "meat eater", "17 ft", "40 ft", "4,000 lbs", 4, 4)
+// const allosaurus = new Dinosaur("Allosaurus", "https://www.google.com/search?sxsrf=ALeKk016aMSvhfNfUlk_i-WtS1yT14DukA:1623333394135&q=allosaurus+dinosaur&tbm=isch&source=iu&ictx=1&tbs=simg:CAESlwIJdQqiEbZqgk8aiwILELCMpwgaOgo4CAQSFPoL9Cu3GtgYkQ3bO7klri_16P68-GhqaxAGnIb3cIhvewM86KqINOZkvp6txaMOAuiAFMAQMCxCOrv4IGgoKCAgBEgRMKiD7DAsQne3BCRqrAQohCg1hbmltYWwgZmlndXJl2qWI9gMMCgovbS8waDhtN2NzCicKEXR5cmFubm9zYXVydXMgcmV42qWI9gMOCgwvZy8xaGZfY245azIKHwoMY2FuaW5lIHRvb3Ro2qWI9gMLCgkvbS8wMWN2ODQKHAoJdGhlcm9wb2Rz2qWI9gMLCgkvbS8wMXJ2bmQKHgoMdmVsb2NpcmFwdG9y2qWI9gMKCggvbS8wN3p5MQw&fir=zkZiGE3GWdS5TM%252C2lQNXIOpCtZfdM%252C_&vet=1&usg=AI4_-kSQu60LE1pveyZ6sBa0OcvpGf-JQQ&sa=X&ved=2ahUKEwidorySnI3xAhUQh-AKHflDCAkQ9QF6BAgWEAE#imgrc=zkZiGE3GWdS5TM", "late Jurassic", "meat eater", "17 ft", "40 ft", "4,000 lbs", 4, 4)
 
 
 // name: "Allosaurus",

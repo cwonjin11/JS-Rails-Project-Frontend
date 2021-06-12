@@ -2,11 +2,49 @@
 /* body { background-color: rgb(158, 214, 95); } */
 
 body {
-    background-color: rgb(191, 255, 132);
-    margin: 0;
+    background-color: #001b0e;
+    background-image: url("https://wallpaperaccess.com/full/429863.jpg");
+    /* background-repeat: no-repeat; */
+    background-size: auto;
+    /* margin: 0; */
     font-family: monospace;
   }
+
+  .category-button {
+    opacity: .9;
+    margin: 2rem;
+    width: 300px;
+    display: inline-grid;
+    /* font-size: xx-large; */
+    background-color: skyblue;
+    
+  }
+
+h1 {
+    font-size: 50px;
+    font-weight: bold;
+    color: #ffbb00;
+    text-shadow: 1px 2px lightslategray;
+  }
+
+  /* #category-container { */
+    /* margin: 2rem; */
+
+  /* } */
   
+
+  #project-header
+  {
+    display: flex;
+    justify-content: center;
+    /* background: #515DA2; */
+    opacity: .8;
+    /* width: 300px; */
+    height: 300px;
+    /* width: auto; */
+    padding: 1rem;
+  }
+
   #toy-header {
     display: flex;
     justify-content: center;
@@ -21,8 +59,9 @@ body {
     width: auto;
   }
   
-  #toy-collection {
+  #dino-collection {
     margin: 2rem;
+
   }
   
   .card {
@@ -38,8 +77,8 @@ body {
   
   .toy-avatar {
     justify-self: center;
-    height: 12rem;
-    width: auto;
+    height: 15rem;
+    width: 100%;
   }
   
   button {
@@ -64,14 +103,15 @@ body {
     padding: 1rem;
     width: stretch;
     height: auto;
-    display: none;
+    /* display: block; */
     background: #515DA2;
     opacity: .8;
   }
   
   .add-toy-form {
-    width: 80%
-  }
+    width: 100%;
+    height: 100%;
+  } 
   
   .submit {
     position: relative;
@@ -101,4 +141,64 @@ body {
     font-family: monospace;
     margin: 3px;
   }
+
   
+
+
+
+
+/* flip card */
+
+  .flip-card {
+    background-color: transparent;
+    width: 300px;
+    height: 300px;
+    /* perspective: 1000px; */
+
+    /* text-align: center; */
+    /* border: grey solid 1px; */
+    padding: .6rem .4rem;
+    /* width: 15rem; */
+    /* height: 35rem; */
+    display: inline-grid;
+    /* margin: 1rem 2rem; */
+    /* box-shadow: 3px 4px #e04b52; */
+    /* perspective: 1000px; */
+  }
+  
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+  
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  .flip-card-front {
+    background-color: #fdc52c;
+    opacity: .9;
+    color: black;
+  }
+  
+  .flip-card-back {
+    background-color: #003152;
+    opacity: .8;
+    color: white;
+    transform: rotateY(180deg);
+    border: white solid 1px;
+  }
+  /* end flip card */
