@@ -13,7 +13,7 @@ class Dinosaur{    //creating dino for the frontend object
 
             this.name = name,
             this.image = imageURL,
-            this.period = period,
+            this.mezosoic_era_id = mezosoic_era_id,
             this.diets = diets,
             this.height = height,
             this.length = length,
@@ -26,6 +26,9 @@ class Dinosaur{    //creating dino for the frontend object
         //  Actor.all[]  <<  this  ~  @actor
 
     }
+
+    
+
 
     
     //  DON'T need the Function Syntax for

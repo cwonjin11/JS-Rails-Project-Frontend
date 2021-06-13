@@ -6,18 +6,6 @@ console.log("where is my categories");
 
 class MezosoicEra{
 
-    static all = []
-    // static container = document.getElementById("category-container")
-    ////  state😏🗃 of our Actors  -- On the Frontend
-    ////  similar to  (@@all)
-
-    constructor(period){
-
-        this.period = period
-        //  Actor.all[]  <<  this  ~  @actor
-
-    }
-
     // render(){
     //     const btn = document.createElement("button")
     //     btn.className = "category-button"
