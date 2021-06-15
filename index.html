@@ -8,6 +8,7 @@
 
         <link rel="stylesheet" href="css/index.css">
 
+        <script type="text/javascript" src="js/services/API.js"></script>
         <script type="text/javascript" src="index.js"></script>
         <script type="text/javascript" src="js/model/dinosaur.js"></script>
     </head>
@@ -27,35 +28,45 @@
 
 
         <div class="container" style="text-align:center">
-                <form class="add-toy-form" >
-                  <h2>Let's add Dinosaur Flash Card! </h2>
+                <form class="add-dino-form" style="text-align:center" >
+                  <h2>Let's Add a Dinosaur Flash Card! </h2>
         
-                  <h2>Name:</h2>
+                  <h3>Name:</h3>
                   <input type="text" name="name" value="" placeholder=" Enter the dino's name..." class="input-text" />
-                  <h2>Image URL:</h2>
+                  <h3>Image URL:</h3>
                   <input type="text" name="image" value="" placeholder=" Add Image URL..." class="input-text" />
-                  <h2>period:</h2>
-                  <input type="text" name="period" value="" placeholder=" select the period" class="input-text" />
-                  <h2>diets:</h2>
-                  <input type="text" name="deits" value="" placeholder="herbivores or carnivores" class="input-text" />
-                  <h2>height:</h2>
+                  <!--<h3>period:</h3>
+                  <input type="text" name="mezosoic_era_id" value="" placeholder=" select the period" class="input-text" /> -->
+                  <h3>period:</h3>
+                  <select name="mezosoic_era_id">
+                    <option value="1">Triassic</option>
+                    <option value="2">Jurassic</option>
+                    <option value="3">Cretaceous</option>
+                  </select>
+                  
+                  <h3>diets:</h3>
+                  <!--<input type="text" name="diets" value="" placeholder="herbivores or carnivores" class="input-text" />-->
+                  <select name="diets">
+                    <option value="herbivores">herbivores</option>
+                    <option value="carnivores">carnivores</option>
+                    <option value="omnivores">omnivores</option>
+                  </select>
+                  
+                  <h3>height:</h3>
                   <input type="text" name="height" value="" placeholder="how tall ? " class="input-text" />
-                  <h2>length:</h2>
+                  <h3>length:</h3>
                   <input type="text" name="length" value="" placeholder="how long ? " class="input-text" />
-                  <h2>weight:</h2>
+                  <h3>weight:</h3>
                   <input type="text" name="weight" value="" placeholder=" how heavy ?" class="input-text" />
-                  <h2>offense:</h2>
-                  <input type="text" name="offense" value="" placeholder=" offensive? " class="input-text" />
-                  <h2>defense:</h2>
-                  <input type="text" name="defense" value="" placeholder=" defense ability" class="input-text" />
+                  <h3>description:</h3>
+                  <input type="text" name="desc" value="" placeholder=" description" class="input-text" />
 
                   <br>
                   <input type="submit" name="submit" value="Click to add your Dino!!!!" class="submit"/>
                 </form>
         </div>
 
-        <p style="text-align:center"> 
-            <button id="new-dino-btn">Let's Add a DINO!🎩💫📋 </button> 
+        <p style="text-align:center"> <button id="new-dino-btn">Let's Add a DINO!🎩💫📋 </button> 
         </p>
 
         
@@ -66,8 +77,9 @@
 
         <!-- display all dinosaurs by each category -->
         <div id="dino-collection" style="text-align:center" ></div>
-        <!-- <script type="text/javascript" src="src/index.js"></script> -->
 
+        <!-- <script type="text/javascript" src="index.js"></script> -->
+        <!-- <script type="text/javascript" src="js/services/api_service.js"></script> -->
     </body>
 
 </html>

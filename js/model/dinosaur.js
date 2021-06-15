@@ -1,5 +1,5 @@
 
-console.log("where is my dinosaurs");
+// console.log("where is my dinosaurs");
 
 
 
@@ -9,50 +9,95 @@ class Dinosaur{    //creating dino for the frontend object
     static all = []     ////  state😏🗃 of our Actors  -- On the Frontend    ////  similar to  (@@all)
 
     // whenever we need to add somthing. To pass as whole object, use curl bracket{} for the attributes
-    constructor({name, imageURL, period, diets, height, length, weight, offense, defense}){
+    constructor({id, name, image, mezosoic_era_id, diets, height, length, weight, desc}){
 
+            this.id = id,
             this.name = name,
-            this.image = imageURL,
+            this.image = image,
             this.mezosoic_era_id = mezosoic_era_id,
             this.diets = diets,
             this.height = height,
             this.length = length,
             this.weight = weight,
-            this.offense = offense,
-            this.defense = defense
+            this.desc = desc
+
                 // this.catchPhrase = knownForSaying
 
         Dinosaur.all.push(this)
         //  Actor.all[]  <<  this  ~  @actor
 
-    }
-
-    
+    }  // ====>> calling this funcition to class API; new Dinosaur(dinosaur) 
 
 
-    
-    //  DON'T need the Function Syntax for
-    // sayCatchPhrase(){ 
+    makeACard = () =>{ //console.log(this)
+        return `
         
-    //     console.log(`${this.catchPhrase}`) 
-    
-    // }
-    //sayCatchPhrase(){ console.log(`${this.catchPhrase}`) }
-    // this.catchPhrase = function(){ console.log(`${knownForSaying}`) }
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src=${this.image} class="toy-avatar" />
+                        <h2 >${this.name}</h2>
+                    </div>
+
+                    <div class="flip-card-back">
+                        <h3 style="color: #fdc52c;">${this.name}</h3>
+                        <p>diet : ${this.diets}</p>
+                        <p>period : ${this.mezosoic_era_id}</p>
+                        <p>height : ${this.height}</p>
+                        <p>length : ${this.length}</p>
+                        <p>weight : ${this.weight}</p>
+                        <p>description : ${this.desc}</p>
+                        <button data-id="${this.id}" class="delete-btn"> Delete</button>
+                    </div>
+                </div>
+
+                
+         `
+}
+
+
+
+// ################## set renderDino #########################
+
+renderDinosaur = (dinosaur) => {
+    // Create the Outer Wrapping/Containing Element 
+    ////  - In this case a <div>
+    const cardDiv = document.createElement("div")
+
+    // Assigning any classes etc to it
+    ////  - In this case: class="card"
+        cardDiv.classList.add("flip-card")
+         cardDiv.setAttribute("data-id", dinosaur.id)
+        //  adding an (id=) to (cardDiv) 
+         cardDiv.id = dinosaur.id
+
+    // use innerHTML to create the inner elements
+        cardDiv.innerHTML = this.makeACard()
+        // console.log(cardDiv)
+        //  cardDiv.innerHTML = `
+
+
+
+
+    const collectionDiv = document.querySelector("#dino-collection")
+    collectionDiv.append(cardDiv)
+
+
+}
+
+
+
+    // delete our hogs
+    // deleteHog(e){
+    //     const id = parseInt(e.target.parentElement.id)
+    //     fetch(`http://localhost:3000/dinosaurs/${id}`,{
+    //       method: 'DELETE'
+    //     })
+    //     .then(() => {
+    //       document.getElementById('hog-container').removeChild(document.getElementById(id))
+    //     })
+    //   }
 
 
 
 
 }
-// const allosaurus = new Dinosaur("Allosaurus", "https://www.google.com/search?sxsrf=ALeKk016aMSvhfNfUlk_i-WtS1yT14DukA:1623333394135&q=allosaurus+dinosaur&tbm=isch&source=iu&ictx=1&tbs=simg:CAESlwIJdQqiEbZqgk8aiwILELCMpwgaOgo4CAQSFPoL9Cu3GtgYkQ3bO7klri_16P68-GhqaxAGnIb3cIhvewM86KqINOZkvp6txaMOAuiAFMAQMCxCOrv4IGgoKCAgBEgRMKiD7DAsQne3BCRqrAQohCg1hbmltYWwgZmlndXJl2qWI9gMMCgovbS8waDhtN2NzCicKEXR5cmFubm9zYXVydXMgcmV42qWI9gMOCgwvZy8xaGZfY245azIKHwoMY2FuaW5lIHRvb3Ro2qWI9gMLCgkvbS8wMWN2ODQKHAoJdGhlcm9wb2Rz2qWI9gMLCgkvbS8wMXJ2bmQKHgoMdmVsb2NpcmFwdG9y2qWI9gMKCggvbS8wN3p5MQw&fir=zkZiGE3GWdS5TM%252C2lQNXIOpCtZfdM%252C_&vet=1&usg=AI4_-kSQu60LE1pveyZ6sBa0OcvpGf-JQQ&sa=X&ved=2ahUKEwidorySnI3xAhUQh-AKHflDCAkQ9QF6BAgWEAE#imgrc=zkZiGE3GWdS5TM", "late Jurassic", "meat eater", "17 ft", "40 ft", "4,000 lbs", 4, 4)
-
-
-// name: "Allosaurus",
-// image: "https://www.google.com/search?sxsrf=ALeKk016aMSvhfNfUlk_i-WtS1yT14DukA:1623333394135&q=allosaurus+dinosaur&tbm=isch&source=iu&ictx=1&tbs=simg:CAESlwIJdQqiEbZqgk8aiwILELCMpwgaOgo4CAQSFPoL9Cu3GtgYkQ3bO7klri_16P68-GhqaxAGnIb3cIhvewM86KqINOZkvp6txaMOAuiAFMAQMCxCOrv4IGgoKCAgBEgRMKiD7DAsQne3BCRqrAQohCg1hbmltYWwgZmlndXJl2qWI9gMMCgovbS8waDhtN2NzCicKEXR5cmFubm9zYXVydXMgcmV42qWI9gMOCgwvZy8xaGZfY245azIKHwoMY2FuaW5lIHRvb3Ro2qWI9gMLCgkvbS8wMWN2ODQKHAoJdGhlcm9wb2Rz2qWI9gMLCgkvbS8wMXJ2bmQKHgoMdmVsb2NpcmFwdG9y2qWI9gMKCggvbS8wN3p5MQw&fir=zkZiGE3GWdS5TM%252C2lQNXIOpCtZfdM%252C_&vet=1&usg=AI4_-kSQu60LE1pveyZ6sBa0OcvpGf-JQQ&sa=X&ved=2ahUKEwidorySnI3xAhUQh-AKHflDCAkQ9QF6BAgWEAE#imgrc=zkZiGE3GWdS5TM",
-// period: "late Jurassic",
-// diets: "meat eater",
-// height: "17 ft",
-// length: "40 ft",
-// weight: "	4,000 lbs",
-// offense: 4,
-// defense: 4

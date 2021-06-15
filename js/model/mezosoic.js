@@ -5,6 +5,41 @@
 console.log("where is my categories");
 
 class MezosoicEra{
+    static container = document.getElementsByClassName("category-button")
+    // document.getElementsByClassName("category-button")[0]
+    // container.addEventListener("click", (event)=>{ console.log("💻🔬👀:: You Just Clicked on == ", event.target) }  )
+
+    constructor(era){
+        this.era = era
+        this.render()
+        this.attachEventListener()
+      }
+
+
+//     static all = [] 
+
+
+
+
+//     renderMesozoicEra =(mezosoicEraObj)=> {
+//         const eraDiv = document.createElement("div")
+//     eraDiv.classList.add("category-button")
+//     eraDiv.setAttribute("data-id", mezosoicEraObj.id)
+//     eraDiv.id = mezosoicEraObj.id
+
+
+// // use innerHTML to create the inner elements
+//     eraDiv.innerHTML = `
+//         <h2> ${mezosoicEraObj.period} </h2>
+//     `
+//     const collectionEraDiv = document.querySelector("#era-container")
+//     collectionEraDiv.append(eraDiv)
+    
+// }
+
+//     <div class="category-button">
+//     <h2> ${mezosoicEraObj.period} </h2>
+//   </div>
 
     // render(){
     //     const btn = document.createElement("button")

@@ -4,9 +4,7 @@
 body {
     background-color: #001b0e;
     background-image: url("https://wallpaperaccess.com/full/429863.jpg");
-    /* background-repeat: no-repeat; */
     background-size: auto;
-    /* margin: 0; */
     font-family: monospace;
   }
 
@@ -69,6 +67,12 @@ button:hover {
     color: #e04b52;
     }
 
+   .delete-btn{
+    height: 2rem;
+    background-color: #003152;
+    color: white;
+    position: absolute;
+}
 
   
 
@@ -139,22 +143,22 @@ h1 {
     width: stretch;
     height: auto;
     display: none;
-    background: #515DA2;
+    background: #00912ba6;
     opacity: .8;
   }
   
-  .add-toy-form {
+  .add-dino-form {
     width: 100%;
     height: 100%;
   } 
   
   .submit {
     position: relative;
-    background-color: #e04b52;
+    background-color: #fdc52c;
     border-radius: 5px;
-    height: 2rem;
+    height: 3rem;
     width: max-content;
-    color: whitesmoke;
+    color: green;
     font-size: 18px;
     justify-self: center;
     font-family: monospace;
@@ -163,18 +167,18 @@ h1 {
   
   .submit:hover {
     background-color: whitesmoke;
-    border: #e04b52 solid 1px;
-    color: #e04b52;
+    border: green solid 1px;
+    color: green;
   }
   
   
   .input-text {
     border-radius: 5px;
     height: 2rem;
-    width: 60%;
+    width: 30%;
     font-size: 18px;
     font-family: monospace;
-    margin: 3px;
+    margin: 1px;
   }
 
   
