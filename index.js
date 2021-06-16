@@ -7,13 +7,13 @@
 
 
 //  BASELINE BUILD - RECOMMENDED START UP
-const MESOZOIC_ERA_URL = "http://localhost:3000/mezosoic_eras"
-console.log("This is our MezosoicEra URL ->", MESOZOIC_ERA_URL) 
+// const MESOZOIC_ERA_URL = "http://localhost:3000/mezosoic_eras"
+// console.log("This is our MezosoicEra URL ->", MESOZOIC_ERA_URL) 
 
-const ALL_DINOSAURS_BY_ERA_URL = "http://localhost:3000/mezosoic_eras/${id}/dinosaurs"
-console.log("This is our MezosoicEra URL ->", ALL_DINOSAURS_BY_ERA_URL) 
+// const ALL_DINOSAURS_BY_ERA_URL = "http://localhost:3000/mezosoic_eras/${id}/dinosaurs"
+// console.log("This is our MezosoicEra URL ->", ALL_DINOSAURS_BY_ERA_URL) 
 
-// const ALL_DINOSAURS_URL = "http://localhost:3000/dinosaurs"
+const ALL_DINOSAURS_URL = "http://localhost:3000/dinosaurs"
 // console.log("This is our Dinos Database URL ->", ALL_DINOSAURS_URL)
 
 
@@ -48,12 +48,19 @@ let showTheForm = false;
     });
 
 
-    API.addDinosaurs()
-
     document.querySelector('.container').addEventListener('submit', API.newDinoForm)
+
+    API.createEras()
+    // API.addDinosaurs()
+
+
 // ############## form validation ???  ##########
 
-
+const getAllDinos = document.querySelector('.all-dinos') 
+// console.log(getAllDinos)
+getAllDinos.addEventListener("click", (e) => { 
+    API.addDinosaurs()
+})//console.log("================== ", event.target) }  ) //Dinosaur.renderDinosaur())
 
 // })
 
@@ -181,49 +188,49 @@ let showTheForm = false;
   
 
 
-  //=====  MezosoicEra GET FETCH PROCESS  ========
+//   //=====  MezosoicEra GET FETCH PROCESS  ========
 
-//   const MezosoicEra_URL = "http://localhost:3000/mezosoic_eras" 
-//     console.log("This is Mezosoic Era URL ->", MezosoicEra_URL)
+// //   const MezosoicEra_URL = "http://localhost:3000/mezosoic_eras" 
+// //     console.log("This is Mezosoic Era URL ->", MezosoicEra_URL)
 
 
-    const renderMesozoicEra =(mezosoicEraObj)=> {
-        const eraDiv = document.createElement("div")
+//     const renderMesozoicEra =(mezosoicEraObj)=> {
+//         const eraDiv = document.createElement("div")
         
-        // static container = document.getElementById("category-container")
-        // Assigning any classes etc to it
-        ////  - In this case: class="card"
-        eraDiv.classList.add("category-button")
-            eraDiv.setAttribute("data-id", mezosoicEraObj.id)
-            eraDiv.id = mezosoicEraObj.id
+//         // static container = document.getElementById("category-container")
+//         // Assigning any classes etc to it
+//         ////  - In this case: class="card"
+//         eraDiv.classList.add("category-button")
+//             eraDiv.setAttribute("data-id", mezosoicEraObj.id)
+//             eraDiv.id = mezosoicEraObj.id
     
     
-        // use innerHTML to create the inner elements
-            eraDiv.innerHTML = `
-                <h2> ${mezosoicEraObj.period} </h2>
-            `
+//         // use innerHTML to create the inner elements
+//             eraDiv.innerHTML = `
+//                 <h2> ${mezosoicEraObj.period} </h2>
+//             `
 
-        //     <div class="category-button">
-        //     <h2> ${mezosoicEraObj.period} </h2>
-        //   </div>
-        const collectionEraDiv = document.querySelector("#era-container")
-        collectionEraDiv.append(eraDiv)
-    }
-
-
+//         //     <div class="category-button">
+//         //     <h2> ${mezosoicEraObj.period} </h2>
+//         //   </div>
+//         const collectionEraDiv = document.querySelector("#era-container")
+//         collectionEraDiv.append(eraDiv)
+//     }
 
 
 
 
-    const renderAllMezosoicEra =(mezosoicEraArray)=> {
-        mezosoicEraArray.forEach(mezosoicEraObj => renderMesozoicEra(mezosoicEraObj))
-        }
 
-    fetch(MESOZOIC_ERA_URL).then(response => response.json())
-    .then(fetchedEra => {console.log(fetchedEra);
-        console.log("ALL Eras comming");
-        renderAllMezosoicEra(fetchedEra)
-    })
+
+//     const renderAllMezosoicEra =(mezosoicEraArray)=> {
+//         mezosoicEraArray.forEach(mezosoicEraObj => renderMesozoicEra(mezosoicEraObj))
+//         }
+
+//     fetch(MESOZOIC_ERA_URL).then(response => response.json())
+//     .then(fetchedEra => {console.log(fetchedEra);
+//         console.log("ALL Eras comming");
+//         renderAllMezosoicEra(fetchedEra)
+//     })
 
 
 
@@ -350,9 +357,9 @@ let showTheForm = false;
  //========  DELETE + EDIT FETCH (Based on Buttons)  ========
   
   
- const cardsCollection = document.querySelector("#toy-collection")
+const cardsCollection = document.querySelector("#dino-collection")
 
-cardsCollection.addEventListener("click", event =>{ event.preventDefault(); 
+    cardsCollection.addEventListener("click", event =>{ event.preventDefault(); 
     // console.log(event.target)  ////  
 
 
@@ -360,34 +367,22 @@ cardsCollection.addEventListener("click", event =>{ event.preventDefault();
       // if(event.target.matches(".delete-btn")){ console.log(event.target.dataset.id) }
     
       
-      if(event.target.matches(".delete-btn")){   //  ***  (===)  MAKE A VIDEO!!
-        
+      if(event.target.matches(".delete-btn")){   // 
         console.log(event.target) 
-        
-        
+    
         const id = event.target.dataset.id
-        
+    
         const geThatOuttaHeeyah = document.getElementById(id)
         
         
-        fetch(`${API_DATABASE_URL}/${id}`, {
-            
+        fetch(`${ALL_DINOSAURS_URL}/${id}`, {
             method: "DELETE",
             headers: { "Content-Type": "application/json" }
-            
         })
-        .then(response => response.json())
-        .then( 
-            
-            
+            .then(response => response.json())
+            .then(geThatOuttaHeeyah.remove()
+            )
             // event.target.closest(".card").remove() 
-            
-            geThatOuttaHeeyah.remove()
-            
-            
-            )        
-            
-            
             
             // fetch(`${API_DATABASE_URL}/${id}`, {
                 
@@ -397,13 +392,9 @@ cardsCollection.addEventListener("click", event =>{ event.preventDefault();
                 // })
                 // .then(response => response.json())   
                 // .then(theThingWeJustDeleted => console.log("You Just Deleted  ->", theThingWeJustDeleted))
-                
-                
-                
-                
-            }
+        }
 
 
+        }) //cardcollectotion close
 
-
-});   //END DOCLOADED
+});   //ENd "DOMContentLoaded"
