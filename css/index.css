@@ -61,7 +61,6 @@ button {
     background-color: #fdc52c;
     border-radius: 5px;
     height: 3rem;
-    /* width: 100%; */
     color: rgb(160, 59, 59);
     font-size: 18px;
     justify-self: center;
@@ -98,11 +97,8 @@ h1 {
   {
     display: flex;
     justify-content: center;
-    /* background: #515DA2; */
     opacity: .8;
-    /* width: 300px; */
     height: 300px;
-    /* width: auto; */
     padding: 1rem;
   }
 
@@ -110,7 +106,6 @@ h1 {
 
   #era-container > div { 
     display: inline-block;
- 
   }
 
 
@@ -126,16 +121,12 @@ h1 {
     border: 3px solid;
     border-radius: 5px;
     padding: 1rem;
-    /* width: 100%; */
-    /* min-width: 540px; */
-    /* height: auto; */
     display: none;
     background: #00912ba6;
     opacity: .8;
     max-width: 540px;
-  margin-left: auto;
-  margin-right: auto;
-  /* position: absolute; */
+    margin-left: auto;
+    margin-right: auto;
   }
   
   .add-dino-form {
