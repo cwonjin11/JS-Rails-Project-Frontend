@@ -20,8 +20,8 @@ class Dinosaur{    //creating dino for the frontend object
             this.length = length,
             this.weight = weight,
             this.desc = desc
+            // this.renderDinosaur()
 
-                // this.catchPhrase = knownForSaying
 
         Dinosaur.all.push(this)
         //  Actor.all[]  <<  this  ~  @actor
@@ -29,7 +29,38 @@ class Dinosaur{    //creating dino for the frontend object
     }  // ====>> calling this funcition to class API; new Dinosaur(dinosaur) 
 
 
-    makeACard = () =>{ //console.log(this)
+// ################## set renderDino #########################
+
+    renderDinosaur = (dinosaur) => {console.log(dinosaur)
+    // Create the Outer Wrapping/Containing Element 
+    ////  - In this case a <div>
+        const cardDiv = document.createElement("div")
+
+        // Assigning any classes etc to it
+        ////  - In this case: class="card"
+            cardDiv.classList.add("flip-card")
+            cardDiv.setAttribute("data-id", dinosaur.id)
+            //  adding an (id=) to (cardDiv) 
+            cardDiv.id = dinosaur.id
+
+        // use innerHTML to create the inner elements
+            cardDiv.innerHTML = this.makeACard()
+            // console.log(cardDiv)
+            //  cardDiv.innerHTML = `
+
+
+
+        // cardDiv.addEventListener("click", e => { console.log("beep", e.target)})
+
+        
+        const collectionDiv = document.querySelector("#dino-collection")
+        collectionDiv.append(cardDiv)
+
+
+
+    }
+
+    makeACard = () =>{ console.log(this)
         return `
         
                 <div class="flip-card-inner">
@@ -51,38 +82,11 @@ class Dinosaur{    //creating dino for the frontend object
                 </div>
 
                 
-         `
-}
+        `
+    }
 
 
 
-// ################## set renderDino #########################
-
-renderDinosaur = (dinosaur) => {
-    // Create the Outer Wrapping/Containing Element 
-    ////  - In this case a <div>
-    const cardDiv = document.createElement("div")
-
-    // Assigning any classes etc to it
-    ////  - In this case: class="card"
-        cardDiv.classList.add("flip-card")
-         cardDiv.setAttribute("data-id", dinosaur.id)
-        //  adding an (id=) to (cardDiv) 
-         cardDiv.id = dinosaur.id
-
-    // use innerHTML to create the inner elements
-        cardDiv.innerHTML = this.makeACard()
-        // console.log(cardDiv)
-        //  cardDiv.innerHTML = `
-
-
-
-
-    const collectionDiv = document.querySelector("#dino-collection")
-    collectionDiv.append(cardDiv)
-
-
-}
 
 
 
