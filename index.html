@@ -9,8 +9,10 @@
         <link rel="stylesheet" href="css/index.css">
 
         <script type="text/javascript" src="js/services/API.js"></script>
-        <script type="text/javascript" src="index.js"></script>
+        <script type="text/javascript" src="js/model/mezosoic.js"></script>
         <script type="text/javascript" src="js/model/dinosaur.js"></script>
+        <script type="text/javascript" src="index.js"></script>
+        
     </head>
 
     
@@ -30,50 +32,44 @@
         <div class="container" style="text-align:center">
                 <form class="add-dino-form" style="text-align:center" >
                   <h2>Let's Add a Dinosaur Flash Card! </h2>
-        
-                  <h3>Name:</h3>
-                  <input type="text" name="name" value="" placeholder=" Enter the dino's name..." class="input-text" />
-                  <h3>Image URL:</h3>
-                  <input type="text" name="image" value="" placeholder=" Add Image URL..." class="input-text" />
+                  <input type="text" name="name" value="" placeholder=" Dinosaur Name..." class="input-text" />
+                  <input type="text" name="image" value="" placeholder=" Image URL..." class="input-text" />
                   <!--<h3>period:</h3>
                   <input type="text" name="mezosoic_era_id" value="" placeholder=" select the period" class="input-text" /> -->
-                  <h3>period:</h3>
                   <select name="mezosoic_era_id">
+                    <option value="" disabled selected>Select Era(period)</option>
                     <option value="1">Triassic</option>
                     <option value="2">Jurassic</option>
                     <option value="3">Cretaceous</option>
                   </select>
-                  
-                  <h3>diets:</h3>
                   <!--<input type="text" name="diets" value="" placeholder="herbivores or carnivores" class="input-text" />-->
                   <select name="diets">
+                    <option value="" disabled selected>Select diet</option>
                     <option value="herbivores">herbivores</option>
                     <option value="carnivores">carnivores</option>
                     <option value="omnivores">omnivores</option>
                   </select>
-                  
-                  <h3>height:</h3>
-                  <input type="text" name="height" value="" placeholder="how tall ? " class="input-text" />
-                  <h3>length:</h3>
-                  <input type="text" name="length" value="" placeholder="how long ? " class="input-text" />
-                  <h3>weight:</h3>
-                  <input type="text" name="weight" value="" placeholder=" how heavy ?" class="input-text" />
-                  <h3>description:</h3>
-                  <input type="text" name="desc" value="" placeholder=" description" class="input-text" />
+                  <input type="text" name="height" value="" placeholder=" height..." class="input-text" />
+                  <input type="text" name="length" value="" placeholder=" length..." class="input-text" />
+                  <input type="text" name="weight" value="" placeholder=" weight..." class="input-text" />
+                  <input type="text" name="desc" value="" placeholder=" description..." class="input-text" />
 
                   <br>
-                  <input type="submit" name="submit" value="Click to add your Dino!!!!" class="submit"/>
+                  <input type="submit" name="submit" value="submit your dinos 🦕" class="submit"/>
                 </form>
         </div>
 
-        <p style="text-align:center"> <button id="new-dino-btn">Let's Add a DINO!🎩💫📋 </button> 
+        <p style="text-align:center"> <button id="new-dino-btn"> Let's Add a DINO!  🦖</button> 
         </p>
 
         
 
         <!-- display category : Triassic, Jurassic, Cretaceous -->
-        <div id="era-container" style="text-align:center" ></div>
-
+        <div id="era-container" style="text-align:center" >
+           <div>
+                <button type="button" class="all-dinos" >All Dinos</button>
+            </div>
+        </div>
 
         <!-- display all dinosaurs by each category -->
         <div id="dino-collection" style="text-align:center" ></div>
