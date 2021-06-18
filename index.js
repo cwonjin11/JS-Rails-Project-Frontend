@@ -16,6 +16,10 @@ document.addEventListener("click", (event)=>{ console.log("💻🔬👀:: You Ju
 
 ////  'Listen To TheDOM🌌🧘🌠👁✨'
 // The DOMContentLoaded event fires when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading
+
+    // let closeTheForm = true;
+
+// let showTheForm = false
 document.addEventListener("DOMContentLoaded", function(){ //console.log("🦕🦕Dinosaurs Showtime🦖🦖")
 
 
@@ -23,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function(){ //console.log("🦕�
 
 
 
-let showTheForm = false
+let showTheForm = true
 
 
     // to make fetching easy, we define our routes as API_DATABASE_URL and use this in later for fetching
@@ -38,11 +42,20 @@ let showTheForm = false
     
     buttonToShowUsTheForm.addEventListener("click",  () => {
         showTheForm  = !showTheForm;
-        if (showTheForm) {
-            dinoFormContainer.style.display = "block";
-        } 
-        else  {
+        // if (showTheForm) {
+        //     dinoFormContainer.style.display = "block";
+            
+        // } 
+        // else  {
+        //     dinoFormContainer.style.display = "none";
+        // }
+        if  (showTheForm) {
             dinoFormContainer.style.display = "none";
+            
+        } 
+        else  
+{
+            dinoFormContainer.style.display = "block";
         }
     })
 
