@@ -8,8 +8,8 @@ class Dinosaur{    //creating dino for the frontend object
 
     static all = []     ////  state😏🗃 of our Actors  -- On the Frontend    ////  similar to  (@@all)
 
-    // whenever we need to add somthing. To pass as whole object, use curl bracket{} for the attributes
-    constructor({id, name, image, mezosoic_era_id, diets, height, length, weight, desc}){
+    // whenever we need to add somthing. To pass as whole object, use curly bracket{} for the attributes
+    constructor({id, name, image, mezosoic_era_id, diets, height, size, weight, desc}){
 
             this.id = id,
             this.name = name,
@@ -17,13 +17,13 @@ class Dinosaur{    //creating dino for the frontend object
             this.mezosoic_era_id = mezosoic_era_id,
             this.diets = diets,
             this.height = height,
-            this.length = length,
+            this.size = size,
             this.weight = weight,
             this.desc = desc
             // this.renderDinosaur()
 
 
-        Dinosaur.all.push(this)
+        // Dinosaur.all.push(this)
         //  Actor.all[]  <<  this  ~  @actor
 
     }  // ====>> calling this funcition to class API; new Dinosaur(dinosaur) 
@@ -31,7 +31,7 @@ class Dinosaur{    //creating dino for the frontend object
 
 // ################## set renderDino #########################
 
-    renderDinosaur = (dinosaur) => {console.log(dinosaur)
+    renderDinosaur = (dinosaur) => {//console.log(dinosaur)
     // Create the Outer Wrapping/Containing Element 
     ////  - In this case a <div>
         const cardDiv = document.createElement("div")
@@ -52,15 +52,26 @@ class Dinosaur{    //creating dino for the frontend object
 
         // cardDiv.addEventListener("click", e => { console.log("beep", e.target)})
 
-        
         const collectionDiv = document.querySelector("#dino-collection")
+    // collectionDiv.innerHTML = ""
+        // const collectionDiv = document.querySelector("#dino-collection")
+
         collectionDiv.append(cardDiv)
+        
 
 
 
     }
 
-    makeACard = () =>{ console.log(this)
+    makeACard = () =>{ //console.log(this)
+        
+
+        // get MesozoicEra attribute(in this case period) like MesozoicEra.period //
+        let eraName
+            if (this.mezosoic_era_id == 1) {eraName = "triassic"}
+            else if (this.mezosoic_era_id == 2) {eraName = "Jurassic"}
+            else {eraName = "Crateteous"}
+
         return `
         
                 <div class="flip-card-inner">
@@ -72,9 +83,10 @@ class Dinosaur{    //creating dino for the frontend object
                     <div class="flip-card-back">
                         <h3 style="color: #fdc52c;">${this.name}</h3>
                         <p>diet : ${this.diets}</p>
-                        <p>period : ${this.mezosoic_era_id}</p>
+                        <!-- <p>period : ${this.mezosoic_era_id}</p> -->
+                        <p>period : ${this.mezosoic_era_id = eraName}</p>
                         <p>height : ${this.height}</p>
-                        <p>length : ${this.length}</p>
+                        <p>size : ${this.size}</p>
                         <p>weight : ${this.weight}</p>
                         <p>description : ${this.desc}</p>
                         <button data-id="${this.id}" class="delete-btn"> Delete</button>
