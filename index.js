@@ -23,7 +23,8 @@ document.addEventListener("DOMContentLoaded", function(){ //console.log("🦕�
 
 
 
-let showTheForm = false;
+let showTheForm = false
+
 
     // to make fetching easy, we define our routes as API_DATABASE_URL and use this in later for fetching
     // const ALL_DINOSAURS_URL = "http://localhost:3000/dinosaurs"
@@ -31,25 +32,49 @@ let showTheForm = false;
 
 
     const dinoFormContainer = document.querySelector(".container")
-    const buttonToShowUsTheForm = document.querySelector("#new-dino-btn");
-        
-    buttonToShowUsTheForm.addEventListener("click", () => {
-            showTheForm = !showTheForm;
-            if (showTheForm) {
-                dinoFormContainer.style.display = "block";
-                } 
-            else {
-                dinoFormContainer.style.display = "none";
-                }
-    });
+    
+    // const buttonToShowUsTheForm = document.querySelector("#new-dino-btn"); 
+    const buttonToShowUsTheForm = document.querySelector("#new-dino-btn"); //|| document.querySelector(".close-button");
+    
+    buttonToShowUsTheForm.addEventListener("click",  () => {
+        showTheForm  = !showTheForm;
+        if (showTheForm) {
+            dinoFormContainer.style.display = "block";
+        } 
+        else  {
+            dinoFormContainer.style.display = "none";
+        }
+    })
 
+
+    
+    // let closeTheForm = true;
+    const buttonToCloseTheForm =  document.querySelector(".close-button");
+    buttonToCloseTheForm.addEventListener("click",  () => {
+        // showTheForm  = !showTheForm;
+        if (showTheForm = true ) {
+             dinoFormContainer.style.display = "none";
+        }
+    })
+    
+    // let closeTheForm = true;
+    // const buttonToCloseTheForm =  document.querySelector(".close-button"); 
+
+    // buttonToCloseTheForm.addEventListener("click",  () => {
+    //     console.log("yy")
+    //     closeTheForm
+    //         // showTheForm = !showTheForm;
+    //         if (closeTheForm) {
+    //             dinoFormContainer.style.display = "none";
+    //             } 
+    // });
 
    
     document.querySelector('.container').addEventListener('submit', API.newDinoForm)
     // console.log("SHOW ME SUBMIT - IN THE FORM:  ")
     
-    API.createEras()
-    // API.addDinosaurs()
+    API.createEras()    // 
+    API.addDinosaurs()  // << First view of web page. showing all dinosaurs
 
 
 
@@ -65,14 +90,21 @@ getAllDinos.addEventListener("click", (e) => {
 //     API.addDinosaurs()
     // console.log("================== ", Dinosaur.renderDinosaur()) 
 });
-// , {once : true})
-// function foo() {
-//     // do things, then
-//     removeEventListener('click', foo);
-// }
+
  
+// EVENT LISTENER FOR:  CLOSE BUTTON ON POP-UP-EDIT FORM
+// const closeButton = dinoFormContainer.querySelector(".close-button")
+//         closeButton.addEventListener("click", (event)=>{
+//         console.log("✖️CLOSE✖️", event)
+//         if (showTheForm) {
+//             dinoFormContainer.style.display = "none";
+//             } 
+
+// });
 
 
+
+        
 // console.log("================== ", event.target) }  ) //Dinosaur.renderDinosaur())
 
 // })
