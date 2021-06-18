@@ -1,12 +1,4 @@
-  
-// const baseURL = "http://localhost:3000"
-// const api = new ApiService(baseURL)
 
-
-
-
-
-//  BASELINE BUILD - RECOMMENDED START UP
 // const MESOZOIC_ERA_URL = "http://localhost:3000/mezosoic_eras"
 // console.log("This is our MezosoicEra URL ->", MESOZOIC_ERA_URL) 
 
@@ -25,6 +17,10 @@ document.addEventListener("click", (event)=>{ console.log("💻🔬👀:: You Ju
 ////  'Listen To TheDOM🌌🧘🌠👁✨'
 // The DOMContentLoaded event fires when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading
 document.addEventListener("DOMContentLoaded", function(){ //console.log("🦕🦕Dinosaurs Showtime🦖🦖")
+
+
+
+
 
 
 let showTheForm = false;
@@ -48,21 +44,46 @@ let showTheForm = false;
     });
 
 
+   
     document.querySelector('.container').addEventListener('submit', API.newDinoForm)
-
+    // console.log("SHOW ME SUBMIT - IN THE FORM:  ")
+    
     API.createEras()
     // API.addDinosaurs()
 
 
-// ############## form validation ???  ##########
 
-const getAllDinos = document.querySelector('.all-dinos') 
-// console.log(getAllDinos)
-getAllDinos.addEventListener("click", (e) => { 
+// ############## get all dinos by clicking <All Dinos> button  ##########
+
+const getAllDinos = document.querySelector('.all-dinos') // console.log(getAllDinos)
+getAllDinos.addEventListener("click", (e) => {
+    const collectionDiv = document.querySelector("#dino-collection")
+    collectionDiv.innerHTML = ""
     API.addDinosaurs()
-})//console.log("================== ", event.target) }  ) //Dinosaur.renderDinosaur())
+
+// getAllDinos.addEventListener("click",
+//     API.addDinosaurs()
+    // console.log("================== ", Dinosaur.renderDinosaur()) 
+});
+// , {once : true})
+// function foo() {
+//     // do things, then
+//     removeEventListener('click', foo);
+// }
+ 
+
+
+// console.log("================== ", event.target) }  ) //Dinosaur.renderDinosaur())
 
 // })
+// ======================================================================
+
+
+
+
+//################ validation ################
+
+
 
 
 
@@ -240,34 +261,34 @@ getAllDinos.addEventListener("click", (e) => {
 
 
 
-//=====  POST FETCH PROCESS  ========
+// =====  POST FETCH PROCESS  ========
 
 
-  // Connecting 'JS-Puppet-Strings' to The New Toy Form
+//   Connecting 'JS-Puppet-Strings' to The New Toy Form
 //   const newDinoForm = document.querySelector(".add-dino-form")
 
 //   newDinoForm.addEventListener("submit", event =>{ event.preventDefault(); 
-      // console.log("**********", event.target)
-      ////  THIS IS NOT CODE THAT WILD MAKE THE POST HAPPEN
-      ////  This Console.loging The Main Event of Focus:  >>>> "submit" <<<<
+//       console.log("**********", event.target)
+//       //  THIS IS NOT CODE THAT WILD MAKE THE POST HAPPEN
+//       //  This Console.loging The Main Event of Focus:  >>>> "submit" <<<<
       
 
 
-      //  Getting User Form Input Data 📋🖋🤪
-    //   const name = event.target.name.value
-    //   const image = event.target.image.value
-    //   const mezosoic_era_id = event.target.mezosoic_era_id.value
-    //   const diets = event.target.diets.value
-    //   const height = event.target.height.value
-    //   const length = event.target.length.value
-    //   const weight = event.target.weight.value
-    //   const desc = event.target.desc.value
-    //     const submit = event.target.submit
-    //       console.log("SHOW ME SUBMIT - IN THE FORM:  ", submit)
-          ////  This will ONLY show up upon hitting  The "SUBMIT" Button
+//     //    Getting User Form Input Data 📋🖋🤪
+//       const name = event.target.name.value
+//       const image = event.target.image.value
+//       const mezosoic_era_id = event.target.mezosoic_era_id.value
+//       const diets = event.target.diets.value
+//       const height = event.target.height.value
+//       const length = event.target.length.value
+//       const weight = event.target.weight.value
+//       const desc = event.target.desc.value
+//         const submit = event.target.submit
+//           console.log("SHOW ME SUBMIT - IN THE FORM:  ", submit)
+//           //  This will ONLY show up upon hitting  The "SUBMIT" Button
 
 
-
+//         }) 
 
         //   fetching a new added dinosaurs by user
 
@@ -359,7 +380,7 @@ getAllDinos.addEventListener("click", (e) => {
   
 const cardsCollection = document.querySelector("#dino-collection")
 
-    cardsCollection.addEventListener("click", event =>{ event.preventDefault(); 
+    cardsCollection.addEventListener("click", event => { event.preventDefault(); 
     // console.log(event.target)  ////  
 
 
@@ -372,7 +393,7 @@ const cardsCollection = document.querySelector("#dino-collection")
     
         const id = event.target.dataset.id
     
-        const geThatOuttaHeeyah = document.getElementById(id)
+        const byeDino = document.getElementById(id)
         
         
         fetch(`${ALL_DINOSAURS_URL}/${id}`, {
@@ -380,8 +401,9 @@ const cardsCollection = document.querySelector("#dino-collection")
             headers: { "Content-Type": "application/json" }
         })
             .then(response => response.json())
-            .then(geThatOuttaHeeyah.remove()
-            )
+            .then(
+                byeDino.remove()
+                )
             // event.target.closest(".card").remove() 
             
             // fetch(`${API_DATABASE_URL}/${id}`, {

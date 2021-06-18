@@ -18,8 +18,9 @@
     
 
     <body>
-        <h1 style="text-align:center" >🦕 DINOSAURS FLASH CARD 🦖</h1>
-
+       
+            <h1  class="opacity" style="text-align:center"  > 🦕 DINOSAURS FLASH CARD 🦖  </h1>
+ 
 
         <!-- <div id="project-header" style="text-align:center">
             <img
@@ -28,9 +29,11 @@
             />
         </div>  -->
 
-
+        <p style="text-align:center"> <button id="new-dino-btn"> Let's Add a DINO!  🦖</button> 
+        </p>
         <div class="container" style="text-align:center">
-                <form class="add-dino-form" style="text-align:center" >
+            
+                <form name="dino-form" class="add-dino-form" style="text-align:center">
                   <h2>Let's Add a Dinosaur Flash Card! </h2>
                   <input type="text" name="name" value="" placeholder=" Dinosaur Name..." class="input-text" />
                   <input type="text" name="image" value="" placeholder=" Image URL..." class="input-text" />
@@ -50,17 +53,19 @@
                     <option value="omnivores">omnivores</option>
                   </select>
                   <input type="text" name="height" value="" placeholder=" height..." class="input-text" />
-                  <input type="text" name="length" value="" placeholder=" length..." class="input-text" />
+                  <input type="text" name="size" value="" placeholder=" size..." class="input-text" />
                   <input type="text" name="weight" value="" placeholder=" weight..." class="input-text" />
                   <input type="text" name="desc" value="" placeholder=" description..." class="input-text" />
 
                   <br>
+                
                   <input type="submit" name="submit" value="submit your dinos 🦕" class="submit"/>
+                  <button type="button" class="close-button">  ✖️CLOSE✖️ </button>
+                
                 </form>
         </div>
 
-        <p style="text-align:center"> <button id="new-dino-btn"> Let's Add a DINO!  🦖</button> 
-        </p>
+
 
         
 
