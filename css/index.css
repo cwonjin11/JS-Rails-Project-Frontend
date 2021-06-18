@@ -33,6 +33,10 @@ body {
     color: #0f7c00;}
 
 
+
+
+
+
  .category-button {
     font-family: monospace;
     cursor: pointer;
@@ -54,6 +58,19 @@ body {
     color: #0f7c00;
 }
 
+
+ .all-dinos {
+    font-family: monospace;
+    cursor: pointer;
+    opacity: .9;
+    margin: 15px;
+    width: 200px;
+    background-color: #00912ba6;
+    color: black;
+    border-radius: 5px; 
+    font-size: 18px;
+    font-weight: bold;
+ }
 
 
 button {
@@ -79,20 +96,37 @@ button:hover {
     background-color: #003152;
     color: white;
     position: absolute;
-}
+    bottom: 8px;
+    right: 16px;
+   }
 
-  
+    .delete-btn:hover {
+        background-color: whitesmoke;
+        border: #0f7c00 solid 1px;
+        color: #0269c9;}
+        
+
+.opacity {
+    width: 80%; 
+    background-color: rgba(3, 172, 240, 0.5);
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    /* justify-content: center; */
+}  
 
 h1 {
     font-size: 50px;
     font-weight: bold;
-    color: #ffbb00;
+    color: #004b26;
     text-shadow: 1px 2px rgb(87, 105, 124);
-    /* background-color: skyblue; */
-    opacity: .9;
+    
+    /* opacity: .5; */
   }
-
-
+p {
+line-height: 16px;
+margin: 8px 0;
+}
   #project-header
   {
     display: flex;
@@ -152,6 +186,24 @@ h1 {
     border: green solid 1px;
     color: green;
   }
+  .close-button {
+    position: relative;
+    background-color: #fdc52c;
+    border-radius: 5px;
+    height: 2.6rem;
+    width: max-content;
+    color: green;
+    font-size: 18px;
+    justify-self: center;
+    font-family: monospace;
+    margin: 3px;
+  }
+  
+  .close-button:hover {
+    background-color: whitesmoke;
+    border: green solid 1px;
+    color: green;
+  }
   
   
   .input-text {
@@ -162,6 +214,7 @@ h1 {
     font-size: 15px;
     font-family: monospace;
     margin: 4px;
+    
   }
 
   .add-dino-form > select{
@@ -186,6 +239,8 @@ h1 {
     height: 300px;
     padding: .6rem .4rem;
     display: inline-grid;
+    /* display: grid; */
+
   }
   
   .flip-card-inner {
@@ -196,6 +251,7 @@ h1 {
     transition: transform 0.6s;
     transform-style: preserve-3d;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    /* perspective: 40rem; */
   }
   
   .flip-card:hover .flip-card-inner {
@@ -208,6 +264,10 @@ h1 {
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    /* display: flex; */
+    /* backface-visibility: hidden; */
+    /* min-width: 100%; */
+    /* display: flex; */
   }
   
   .flip-card-front {
@@ -222,6 +282,14 @@ h1 {
     color: white;
     transform: rotateY(180deg);
     border: white solid 1px;
+    /* text-align: ; */
+    
+    /* height: relative; */
+    /* display: flex; */
+    backface-visibility: hidden;
+    min-width: 100%;
+    /* position: absolute; */
+    
     
   }
   /* end flip card */
@@ -244,10 +312,11 @@ h1 {
   } */
 
    
-  /* #dino-collection {
-    margin: 2rem;
+  #dino-collection {
+    margin: 3rem;
+    /* display: none; */
 
-  } */
+  }
 /*   
   .card {
     text-align: center;
