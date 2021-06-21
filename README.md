@@ -4,6 +4,5 @@ THIS APPLICATION IS DESIGNED TO WORK ALONG WITH THE FOLLOWING BACKEND/API
 
 
 ***
-update here : add backend repo here
-
+https://github.com/cwonjin11/JS-Rails-Project-Backend
 ***
