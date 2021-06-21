@@ -49,12 +49,12 @@ let showTheForm = true
         // else  {
         //     dinoFormContainer.style.display = "none";
         // }
-        if  (showTheForm) {
-            dinoFormContainer.style.display = "none";
-            
+        if  (showTheForm) 
+        {
+            dinoFormContainer.style.display = "none";    
         } 
         else  
-{
+        {
             dinoFormContainer.style.display = "block";
         }
     })
@@ -86,7 +86,7 @@ let showTheForm = true
     document.querySelector('.container').addEventListener('submit', API.newDinoForm)
     // console.log("SHOW ME SUBMIT - IN THE FORM:  ")
     
-    API.createEras()    // 
+    API.createEras()    //  << First view of web page. Showing all Eras
     API.addDinosaurs()  // << First view of web page. showing all dinosaurs
 
 
@@ -103,6 +103,73 @@ getAllDinos.addEventListener("click", (e) => {
 //     API.addDinosaurs()
     // console.log("================== ", Dinosaur.renderDinosaur()) 
 });
+
+
+
+
+// #################################
+ //========  DELETE + EDIT FETCH (Based on Buttons)  ========
+  
+  
+ const cardsCollection = document.querySelector("#dino-collection")
+
+ cardsCollection.addEventListener("click", event => { event.preventDefault(); 
+ // console.log(event.target)  ////  
+
+
+   // if(event.target.matches(".delete-btn")){ console.log(event.target) }
+   // if(event.target.matches(".delete-btn")){ console.log(event.target.dataset.id) }
+ 
+   
+   if(event.target.matches(".delete-btn")){   // 
+     console.log(event.target) 
+ 
+     const id = event.target.dataset.id
+ 
+     const byeDino = document.getElementById(id)
+     
+     
+     fetch(`${ALL_DINOSAURS_URL}/${id}`, {
+         method: "DELETE",
+         headers: { "Content-Type": "application/json" }
+     })
+         .then(response => response.json())
+         .then(
+             byeDino.remove()
+             )
+         // event.target.closest(".card").remove() 
+         
+         // fetch(`${API_DATABASE_URL}/${id}`, {
+             
+             //   method: "DELETE",
+             //   headers: { "Content-Type": "application/json" }
+             
+             // })
+             // .then(response => response.json())   
+             // .then(theThingWeJustDeleted => console.log("You Just Deleted  ->", theThingWeJustDeleted))
+     }
+
+
+     }) //cardcollectotion close
+
+});   //ENd "DOMContentLoaded"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
  
 // EVENT LISTENER FOR:  CLOSE BUTTON ON POP-UP-EDIT FORM
@@ -419,49 +486,3 @@ getAllDinos.addEventListener("click", (e) => {
 
 
 
-// #################################
- //========  DELETE + EDIT FETCH (Based on Buttons)  ========
-  
-  
-const cardsCollection = document.querySelector("#dino-collection")
-
-    cardsCollection.addEventListener("click", event => { event.preventDefault(); 
-    // console.log(event.target)  ////  
-
-
-      // if(event.target.matches(".delete-btn")){ console.log(event.target) }
-      // if(event.target.matches(".delete-btn")){ console.log(event.target.dataset.id) }
-    
-      
-      if(event.target.matches(".delete-btn")){   // 
-        console.log(event.target) 
-    
-        const id = event.target.dataset.id
-    
-        const byeDino = document.getElementById(id)
-        
-        
-        fetch(`${ALL_DINOSAURS_URL}/${id}`, {
-            method: "DELETE",
-            headers: { "Content-Type": "application/json" }
-        })
-            .then(response => response.json())
-            .then(
-                byeDino.remove()
-                )
-            // event.target.closest(".card").remove() 
-            
-            // fetch(`${API_DATABASE_URL}/${id}`, {
-                
-                //   method: "DELETE",
-                //   headers: { "Content-Type": "application/json" }
-                
-                // })
-                // .then(response => response.json())   
-                // .then(theThingWeJustDeleted => console.log("You Just Deleted  ->", theThingWeJustDeleted))
-        }
-
-
-        }) //cardcollectotion close
-
-});   //ENd "DOMContentLoaded"
