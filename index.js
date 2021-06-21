@@ -1,54 +1,17 @@
 
-// const MESOZOIC_ERA_URL = "http://localhost:3000/mezosoic_eras"
-// console.log("This is our MezosoicEra URL ->", MESOZOIC_ERA_URL) 
-
-// const ALL_DINOSAURS_BY_ERA_URL = "http://localhost:3000/mezosoic_eras/${id}/dinosaurs"
-// console.log("This is our MezosoicEra URL ->", ALL_DINOSAURS_BY_ERA_URL) 
-
-const ALL_DINOSAURS_URL = "http://localhost:3000/dinosaurs"
-// console.log("This is our Dinos Database URL ->", ALL_DINOSAURS_URL)
-
-
-
-
 
 document.addEventListener("click", (event)=>{ console.log("💻🔬👀:: You Just Clicked on == ", event.target) }  )
-
 ////  'Listen To TheDOM🌌🧘🌠👁✨'
 // The DOMContentLoaded event fires when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading
-
-    // let closeTheForm = true;
-
-// let showTheForm = false
 document.addEventListener("DOMContentLoaded", function(){ //console.log("🦕🦕Dinosaurs Showtime🦖🦖")
 
 
-
-
-
-
 let showTheForm = true
-
-
-    // to make fetching easy, we define our routes as API_DATABASE_URL and use this in later for fetching
-    // const ALL_DINOSAURS_URL = "http://localhost:3000/dinosaurs"
-    // console.log("This is our Dinos Database URL ->", ALL_DINOSAURS_URL)
-
-
     const dinoFormContainer = document.querySelector(".container")
-    
-    // const buttonToShowUsTheForm = document.querySelector("#new-dino-btn"); 
     const buttonToShowUsTheForm = document.querySelector("#new-dino-btn"); //|| document.querySelector(".close-button");
     
     buttonToShowUsTheForm.addEventListener("click",  () => {
         showTheForm  = !showTheForm;
-        // if (showTheForm) {
-        //     dinoFormContainer.style.display = "block";
-            
-        // } 
-        // else  {
-        //     dinoFormContainer.style.display = "none";
-        // }
         if  (showTheForm) 
         {
             dinoFormContainer.style.display = "none";    
@@ -108,35 +71,94 @@ getAllDinos.addEventListener("click", (e) => {
 
 
 // #################################
- //========  DELETE + EDIT FETCH (Based on Buttons)  ========
+ //========  DELETE FETCH (Based on Buttons)  ========
   
+
+
+
+
   
- const cardsCollection = document.querySelector("#dino-collection")
+//  const cardsCollection = document.querySelector("#dino-collection")
 
- cardsCollection.addEventListener("click", event => { event.preventDefault(); 
- // console.log(event.target)  ////  
-
-
-   // if(event.target.matches(".delete-btn")){ console.log(event.target) }
-   // if(event.target.matches(".delete-btn")){ console.log(event.target.dataset.id) }
+//  cardsCollection.addEventListener("click", event => { event.preventDefault(); 
+//  // console.log(event.target)  ////  
+//    // if(event.target.matches(".delete-btn")){ console.log(event.target) }
+//    // if(event.target.matches(".delete-btn")){ console.log(event.target.dataset.id) }
  
    
-   if(event.target.matches(".delete-btn")){   // 
-     console.log(event.target) 
- 
-     const id = event.target.dataset.id
- 
-     const byeDino = document.getElementById(id)
+//    if(event.target.matches(".delete-btn")){   // 
+//      console.log(event.target) 
+//      const id = event.target.dataset.id
+//      const byeDino = document.getElementById(id)
      
      
-     fetch(`${ALL_DINOSAURS_URL}/${id}`, {
-         method: "DELETE",
-         headers: { "Content-Type": "application/json" }
-     })
-         .then(response => response.json())
-         .then(
-             byeDino.remove()
-             )
+//      fetch(`${ALL_DINOSAURS_URL}/${id}`, {
+//          method: "DELETE",
+//          headers: { "Content-Type": "application/json" }
+//      })
+//          .then(response => response.json())
+//          .then(
+//              byeDino.remove()
+//              )
+
+//      }
+
+//      }) //cardcollectotion close
+
+  
+
+
+});   //ENd "DOMContentLoaded"
+
+  
+
+
+
+// const MESOZOIC_ERA_URL = "http://localhost:3000/mezosoic_eras"
+// console.log("This is our MezosoicEra URL ->", MESOZOIC_ERA_URL) 
+
+// const ALL_DINOSAURS_BY_ERA_URL = "http://localhost:3000/mezosoic_eras/${id}/dinosaurs"
+// console.log("This is our MezosoicEra URL ->", ALL_DINOSAURS_BY_ERA_URL) 
+
+
+
+
+
+
+     //  cardDiv.addEventListener("click", event => {
+        // console.log("lets add edit function here", event.target)
+        // if(event.target.matches(".edit-btn"))
+        // if(event.target.matches("#myBtn"))
+        //     {console.log("🍎🍎🍎🍎🍎here we go yoohoo🍎🍎🍎🍎🍎"), event.target}
+
+        // Get the modal
+        // var modal = document.getElementById("myModal");
+      
+        // // Get the button that opens the modal
+        // var btn = document.getElementById("myBtn");
+
+        // // Get the <span> element that closes the modal
+        // var span = document.getElementsByClassName("close")[0];
+
+        // // When the user clicks on the button, open the modal
+        //     btn.onclick = function() {
+        //     modal.style.display = "block";
+        //     }
+
+        // // When the user clicks on <span> (x), close the modal
+        // span.onclick = function() {
+        // modal.style.display = "none";
+        // }
+
+        // // When the user clicks anywhere outside of the modal, close it
+        // window.onclick = function(event) {
+        // if (event.target == modal) {
+        //     modal.style.display = "none";
+        // }
+        // }
+
+
+
          // event.target.closest(".card").remove() 
          
          // fetch(`${API_DATABASE_URL}/${id}`, {
@@ -147,16 +169,6 @@ getAllDinos.addEventListener("click", (e) => {
              // })
              // .then(response => response.json())   
              // .then(theThingWeJustDeleted => console.log("You Just Deleted  ->", theThingWeJustDeleted))
-     }
-
-
-     }) //cardcollectotion close
-
-});   //ENd "DOMContentLoaded"
-
-
-
-
 
 
 
