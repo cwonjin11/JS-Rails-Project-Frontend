@@ -4,20 +4,22 @@
 <html>
 
     <head>
+
         <title> 🦖 DINO SHOWTIME 🦕 </title>
 
-        <link rel="stylesheet" href="css/index.css">
 
+        <link rel="stylesheet" href="css/index.css">
         <script type="text/javascript" src="js/services/API.js"></script>
         <script type="text/javascript" src="js/model/mezosoic.js"></script>
         <script type="text/javascript" src="js/model/dinosaur.js"></script>
         <script type="text/javascript" src="index.js"></script>
+        <script type="text/javascript" src="modal.js"></script>
         
     </head>
 
     
 
-    <body>
+    <body >
        
             <h1  class="opacity" style="text-align:center"  > 🦕 DINOSAURS FLASH CARD 🦖  </h1>
  
@@ -37,15 +39,12 @@
                   <h2>Let's Add a Dinosaur Flash Card! </h2>
                   <input type="text" name="name" value="" placeholder=" Dinosaur Name..." class="input-text" />
                   <input type="text" name="image" value="" placeholder=" Image URL..." class="input-text" />
-                  <!--<h3>period:</h3>
-                  <input type="text" name="mezosoic_era_id" value="" placeholder=" select the period" class="input-text" /> -->
                   <select name="mezosoic_era_id">
                     <option value="" disabled selected>Lived...</option>
                     <option value="1">Triassic</option>
                     <option value="2">Jurassic</option>
                     <option value="3">Cretaceous</option>
                   </select>
-                  <!--<input type="text" name="diets" value="" placeholder="herbivores or carnivores" class="input-text" />-->
                   <select name="diets">
                     <option value="" disabled selected>Eats...</option>
                     <option value="herbivores">herbivores</option>
@@ -62,8 +61,11 @@
                   <input type="submit" name="submit" value="submit your dinos 🦕" class="submit"/>
                   <button type="button" class="close-button">  ✖️CLOSE✖️ </button>
                 
+                  
                 </form>
+
         </div>
+
 
 
 
@@ -77,7 +79,8 @@
         </div>
 
         <!-- display all dinosaurs by each category -->
-        <div id="dino-collection" style="text-align:center" ></div>
+        <div id="dino-collection" style="text-align:center"></div>
+                
 
         <!-- <script type="text/javascript" src="index.js"></script> -->
         <!-- <script type="text/javascript" src="js/services/api_service.js"></script> -->
