@@ -1,25 +1,24 @@
 class API {
 
 
-  // fetch all dinosaurs without era division
+  // Fetch all dinosaurs without era division
     static ALL_DINOSAURS_URL = "http://localhost:3000/dinosaurs"
+    
     static addDinosaurs() {
-
-        fetch(this.ALL_DINOSAURS_URL)
-        .then(response => response.json())
-        .then(dinosaurs => {
-          // ****
-            dinosaurs.forEach(dinosaur => { //console.log(dinosaur)
-              const newDinosaur = new Dinosaur(dinosaur)
-              newDinosaur.renderDinosaur(dinosaur)     
-              Dinosaur.all.push(newDinosaur)
-
-          })
-        }) 
+      fetch(this.ALL_DINOSAURS_URL)
+      .then(response => response.json())
+      .then(dinosaurs => {
+        // ****
+          dinosaurs.forEach(dinosaur => { //console.log(dinosaur)
+            const newDinosaur = new Dinosaur(dinosaur)
+            newDinosaur.renderDinosaur(dinosaur)     
+            Dinosaur.all.push(newDinosaur)
+        })
+      }) 
     }
 
 
-    /// fetching all eras era without dinos
+    // Fetching all eras without dinos
     static MESOZOIC_ERA_URL = "http://localhost:3000/mezosoic_eras"
     static createEras() {
       fetch(this.MESOZOIC_ERA_URL)
@@ -34,7 +33,8 @@ class API {
 
 
 
- // adding dinos 
+ // Add dinos & Post Fetch 
+    // static ALL_DINOSAURS_URL = "http://localhost:3000/dinosaurs"
     static newDinoForm(e) { e.preventDefault()
 
       let data = { //name, image, mezosoic_era_id, diets, height, length, weight, desc
@@ -55,7 +55,7 @@ class API {
         console.log("Hey, if inputs not filled, No post requested!!!", data.name, data.image, data.mezosoic_era_id, data.diets, data.height, 
          data.size, data.weight, data.desc )
       } else {
-              fetch(ALL_DINOSAURS_URL, {
+              fetch("http://localhost:3000/dinosaurs", {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify(data)
@@ -63,7 +63,6 @@ class API {
                   // grab our fetch response
               .then(response => response.json())
               .then(dinosaur => {
-
                     // const {id, name, image, mezosoic_era_id, diets, height, length, weight, desc} = dinosaur
                     // new Dinosaur(id, name, image, mezosoic_era_id, diets, height, length, weight, desc)
                     
@@ -79,14 +78,38 @@ class API {
 
     }; // close preventDefault
 
+
+
+    
+
   }; //close all
 
-
-          // const {id, name, image, mezosoic_era_id, diets, height, length, weight, desc} = dinosaur
-          // new Dinosaur(id, name, image, mezosoic_era_id, diets, height, length, weight, desc)
           
 
 // ===========================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
