@@ -39,7 +39,6 @@ eraHTML(){
 }
 
 
-
 // fetching shows dinosaurs by era
 showDinosByEraId(e){   // use more obvious name! something that make sense
     // debugger 

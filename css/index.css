@@ -104,6 +104,21 @@ button:hover {
         background-color: whitesmoke;
         border: #0f7c00 solid 1px;
         color: #0269c9;}
+    
+
+    .edit-btn{
+        height: 2rem;
+        background-color: #003152;
+        color: white;
+        position: absolute;
+        bottom: 8px;
+        right: 100px;
+        }
+
+    .edit-btn:hover {
+        background-color: whitesmoke;
+        border: #0f7c00 solid 1px;
+        color: #0269c9;}
         
 
 .opacity {
@@ -144,7 +159,7 @@ margin: 8px 0;
 
 
   
-  .toy-avatar {
+  .dino-icon {
     justify-self: center;
     height: 15rem;
     width: 100%;
@@ -239,12 +254,13 @@ margin: 8px 0;
     height: 300px;
     padding: .6rem .4rem;
     display: inline-grid;
+    position: relative;
     /* display: grid; */
 
   }
   
   .flip-card-inner {
-    position: relative;
+    /* position: relative; */
     width: 100%;
     height: 100%;
     text-align: center;
@@ -282,9 +298,9 @@ margin: 8px 0;
     color: white;
     transform: rotateY(180deg);
     border: white solid 1px;
-    /* text-align: ; */
+    text-align: center;
     
-    /* height: relative; */
+    height: relative;
     /* display: flex; */
     backface-visibility: hidden;
     min-width: 100%;
@@ -294,7 +310,11 @@ margin: 8px 0;
   }
   /* end flip card */
 
-
+.form-to-edit{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
 
 
     /* #toy-header {
@@ -314,7 +334,7 @@ margin: 8px 0;
    
   #dino-collection {
     margin: 3rem;
-    /* display: none; */
+    /* display: block; */
 
   }
 /*   
@@ -328,3 +348,26 @@ margin: 8px 0;
     margin: 1rem 2rem;
     box-shadow: 3px 4px #e04b52
   } */
+
+
+
+
+  /* form.is-readonly .btn-save {
+    display: none;
+  }
+  form.is-readonly input[disabled], form.is-readonly textarea[disabled] {
+    cursor: text;
+    background-color: #fff;
+    border-color: transparent;
+    outline-color: transparent;
+    box-shadow: none;
+  }
+  form.is-editing .btn-edit {
+    display: none;
+  } */
+  
+
+
+
+
+  
