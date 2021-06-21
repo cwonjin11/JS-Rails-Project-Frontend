@@ -6,7 +6,7 @@
 class Dinosaur{    //creating dino for the frontend object
 
 
-    static all = []     ////  state😏🗃 of our Actors  -- On the Frontend    ////  similar to  (@@all)
+    static all = []     ////  state😏🗃 of dinos  -- On the Frontend    ////  similar to  (@@all)
 
     // whenever we need to add somthing. To pass as whole object, use curly bracket{} for the attributes
     constructor({id, name, image, mezosoic_era_id, diets, height, size, weight, desc}){
