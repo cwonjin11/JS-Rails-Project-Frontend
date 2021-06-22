@@ -3,9 +3,9 @@ class API {
 
   // Fetch all dinosaurs without era division
     static ALL_DINOSAURS_URL = "http://localhost:3000/dinosaurs"
-    
     static addDinosaurs() {
-      fetch(this.ALL_DINOSAURS_URL)
+      // fetch(this.ALL_DINOSAURS_URL)
+      fetch("http://localhost:3000/dinosaurs")  // <== Promise : The Promise object represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
       .then(response => response.json())
       .then(dinosaurs => {
         // ****
@@ -16,6 +16,7 @@ class API {
         })
       }) 
     }
+
 
 
     // Fetching all eras without dinos
@@ -52,14 +53,15 @@ class API {
       if ( data.name == 0 || data.image == 0 || data.mezosoic_era_id == 0 || data.diets == 0 ||
          data.height == 0 || data.size == 0 || data.weight == 0 || data.desc == 0) {
         alert("input can not be empty");
-        console.log("Hey, if inputs not filled, No post requested!!!", data.name, data.image, data.mezosoic_era_id, data.diets, data.height, 
-         data.size, data.weight, data.desc )
-      } else {
+        // console.log("Hey, if inputs not filled, No post requested!!!", data.name, data.image, data.mezosoic_era_id, data.diets, data.height, 
+        //  data.size, data.weight, data.desc )
+      } else { 
               fetch("http://localhost:3000/dinosaurs", {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify(data)
+                    body: JSON.stringify(data)    //
                   })
+                  
                   // grab our fetch response
               .then(response => response.json())
               .then(dinosaur => {

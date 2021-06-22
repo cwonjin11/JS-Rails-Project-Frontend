@@ -3,7 +3,8 @@ class Dinosaur{    //creating dino for the frontend object
 
     static all = []     ////  state😏🗃 of dinos  -- On the Frontend    ////  similar to  (@@all)
     // whenever we need to add somthing. To pass as whole object, use curly bracket{} for the attributes
-    constructor({id, name, image, mezosoic_era_id, diets, height, size, weight, desc}){
+    // The constructor method is a special method of a class for creating and initializing an object of that class.
+    constructor({id, name, image, mezosoic_era_id, diets, height, size, weight, desc}) {
             this.id = id,
             this.name = name,
             this.image = image,
@@ -18,7 +19,7 @@ class Dinosaur{    //creating dino for the frontend object
 
 // ################## set renderDino #########################
 
-    renderDinosaur = (dinosaur) => {//console.log(dinosaur)
+    renderDinosaur = (dinosaur) => { //console.log(dinosaur)
     // Create the Outer Wrapping/Containing Element 
     ////  - In this case a <div>
         const cardDiv = document.createElement("div")
@@ -36,7 +37,7 @@ class Dinosaur{    //creating dino for the frontend object
         collectionDiv.append(cardDiv)
         cardDiv.addEventListener('click', e => {
             if (e.target.matches(".delete-btn")) this.deleteDino(e)
-            if (e.target.matches(".edit-btn")) this.editDino(e)
+            // if (e.target.matches(".edit-btn")) this.editDino(e)
 
              
         })
@@ -88,7 +89,7 @@ class Dinosaur{    //creating dino for the frontend object
                 )
     }
 
-
+}  //end
 
     // editDino(e) {
 
@@ -172,7 +173,7 @@ class Dinosaur{    //creating dino for the frontend object
     
 
 
-}  //end
+
 
 
 

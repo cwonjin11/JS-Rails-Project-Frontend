@@ -1,54 +1,46 @@
 
 
-document.addEventListener("click", (event)=>{ console.log("💻🔬👀:: You Just Clicked on == ", event.target) }  )
-////  'Listen To TheDOM🌌🧘🌠👁✨'
-// The DOMContentLoaded event fires when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading
-document.addEventListener("DOMContentLoaded", function(){ //console.log("🦕🦕Dinosaurs Showtime🦖🦖")
+document.addEventListener("click", (event)=>{ console.log("💻🔬👀:: You Just Clicked on == ", event.target) }  )      ////  'Listen To TheDOM🌌🧘🌠👁✨'
+document.addEventListener("DOMContentLoaded", function(){ //console.log("🦕🦕Dinosaurs Showtime🦖🦖")       ////// The DOMContentLoaded event fires when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading
 
 
-let showTheForm = true
-    const dinoFormContainer = document.querySelector(".container")
-    const buttonToShowUsTheForm = document.querySelector("#new-dino-btn"); //|| document.querySelector(".close-button");
+  // ##################### FORM ##############################################   
+    // seek and hide form //
+        let showTheForm = true
+        const dinoFormContainer = document.querySelector(".container")
+        const buttonToShowUsTheForm = document.querySelector("#new-dino-btn"); //|| document.querySelector(".close-button");
+        buttonToShowUsTheForm.addEventListener("click",  () => {
+            showTheForm  = !showTheForm;
+            if  (showTheForm) 
+            {
+                dinoFormContainer.style.display = "none";    
+            } 
+            else  
+            {
+                dinoFormContainer.style.display = "block";
+            }
+        })
     
-    buttonToShowUsTheForm.addEventListener("click",  () => {
-        showTheForm  = !showTheForm;
-        if  (showTheForm) 
-        {
-            dinoFormContainer.style.display = "none";    
-        } 
-        else  
-        {
-            dinoFormContainer.style.display = "block";
-        }
-    })
 
+        // ## form close button //
+        const buttonToCloseTheForm =  document.querySelector(".close-button");
+        buttonToCloseTheForm.addEventListener("click",  () => {
+            // showTheForm  = !showTheForm;
+            if (showTheForm = true ) {
+                dinoFormContainer.style.display = "none";
+            }
+        })
 
-    
-    // let closeTheForm = true;
-    const buttonToCloseTheForm =  document.querySelector(".close-button");
-    buttonToCloseTheForm.addEventListener("click",  () => {
-        // showTheForm  = !showTheForm;
-        if (showTheForm = true ) {
-             dinoFormContainer.style.display = "none";
-        }
-    })
-    
-    // let closeTheForm = true;
-    // const buttonToCloseTheForm =  document.querySelector(".close-button"); 
-
-    // buttonToCloseTheForm.addEventListener("click",  () => {
-    //     console.log("yy")
-    //     closeTheForm
-    //         // showTheForm = !showTheForm;
-    //         if (closeTheForm) {
-    //             dinoFormContainer.style.display = "none";
-    //             } 
-    // });
-
-   
+   // submit form 
     document.querySelector('.container').addEventListener('submit', API.newDinoForm)
     // console.log("SHOW ME SUBMIT - IN THE FORM:  ")
-    
+
+  // ##################### FORM ############################################## 
+  
+  
+
+
+  
     API.createEras()    //  << First view of web page. Showing all Eras
     API.addDinosaurs()  // << First view of web page. showing all dinosaurs
 

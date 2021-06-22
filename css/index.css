@@ -202,7 +202,14 @@ margin: 8px 0;
     color: green;
   }
   .close-button {
-    position: relative;
+    margin-top: 1px;
+    margin-right: 2px;
+    position:absolute;
+    /* top:0;
+    right:0; */
+    /* position: relative; */
+    /* bottom: 8px; */
+    /* left: 100px; */
     background-color: #fdc52c;
     border-radius: 5px;
     height: 2.6rem;

@@ -2,6 +2,8 @@
 // console.log("where is my categories");
 
 class MezosoicEra{
+
+    
     constructor(id, period){
         this.id = id,
         this.period = period,
@@ -11,54 +13,50 @@ class MezosoicEra{
     }
 
 
-
-renderMezosoicEra() {
-
-    const eraHolder = document.getElementById("era-container")
-    const eraContainer = document.createElement("div")
-    // eraContainer.dataset.id = this.id
-    // eraContainer.classList.add = "all-dinos-rocks"
-    eraContainer.innerHTML += this.eraHTML()
-    eraHolder.appendChild(eraContainer)
-    eraContainer.addEventListener("click", e => { console.log("beep", e.target) 
-        if (e.target.className === "category-button")this.showDinosByEraId(e)
-
-    })
-
-}
-
-
-eraHTML(){
-    // debugger
-    return `
-    
-    <!-- <h2> ${this.period} </h2> -->
-    <button type="button" class="category-button" data-id=${this.id}>${this.period} </button>
-
-        `
-}
-
-
-// fetching shows dinosaurs by era
-showDinosByEraId(e){   // use more obvious name! something that make sense
-    // debugger 
-    // find the show id from the dataset = e.target.dataset.id
-    let id = e.target.dataset.id
-    // fetch
-    fetch(`http://localhost:3000/mezosoic_eras/${id}/dinosaurs`)
-    .then(resp => resp.json())
-    .then(dinosaurs => { console.log ("fetched Dinos by each period", dinosaurs)
-    
-    const collectionDiv = document.querySelector("#dino-collection")
-    collectionDiv.innerHTML = ""   // make other eras blank
-    
-    dinosaurs.forEach( dinosaur=> {
-        const newDinosaur = new Dinosaur(dinosaur)
-        newDinosaur.renderDinosaur(dinosaur)
-
+    renderMezosoicEra() {
+        const eraHolder = document.getElementById("era-container")
+        const eraContainer = document.createElement("div")
+        // eraContainer.dataset.id = this.id
+        // eraContainer.classList.add = "all-dinos-rocks"
+        eraContainer.innerHTML += this.eraHTML()
+        eraHolder.appendChild(eraContainer)
+        eraContainer.addEventListener("click", e => { console.log("beep", e.target) 
+            if (e.target.className === "category-button")this.showDinosByEraId(e)
         })
-    })
-}
+    }
+
+
+
+    eraHTML(){
+        // debugger
+        return `
+        <!-- <h2> ${this.period} </h2> -->
+        <button type="button" class="category-button" data-id=${this.id}>${this.period} </button>
+            `
+    }
+
+
+
+    // fetching shows dinosaurs by era
+    showDinosByEraId(e){   // use more obvious name! something that make sense
+        // debugger 
+        // find the show id from the dataset = e.target.dataset.id
+        let id = e.target.dataset.id
+        // fetching dinos by era
+        fetch(`http://localhost:3000/mezosoic_eras/${id}/dinosaurs`)
+        .then(resp => resp.json())
+        .then(dinosaurs => { console.log ("fetched Dinos by each period", dinosaurs)
+        
+        const collectionDiv = document.querySelector("#dino-collection")
+        collectionDiv.innerHTML = ""   // make other eras blank
+        
+        dinosaurs.forEach( dinosaur=> {
+            const newDinosaur = new Dinosaur(dinosaur)
+            newDinosaur.renderDinosaur(dinosaur)
+
+            })
+        })
+    }
 
 };
 
