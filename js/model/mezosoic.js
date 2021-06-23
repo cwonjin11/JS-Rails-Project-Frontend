@@ -1,23 +1,19 @@
 
-// console.log("where is my categories");
-
 class MezosoicEra{
 
     
     constructor(id, period){
         this.id = id,
         this.period = period,
-        this.renderMezosoicEra()
-        // Dinosaur.renderDinsaur()
-        // render the instance to the page somehow
+        this.renderMezosoicEra()   // actually show Eras on the web page   // render the instance to the page 
     }
 
 
     renderMezosoicEra() {
         const eraHolder = document.getElementById("era-container")
         const eraContainer = document.createElement("div")
-        // eraContainer.dataset.id = this.id
-        // eraContainer.classList.add = "all-dinos-rocks"
+        eraContainer.dataset.id = this.id
+        eraContainer.classList.add = "all-dinos-rocks"
         eraContainer.innerHTML += this.eraHTML()
         eraHolder.appendChild(eraContainer)
         eraContainer.addEventListener("click", e => { console.log("beep", e.target) 
@@ -26,9 +22,7 @@ class MezosoicEra{
     }
 
 
-
     eraHTML(){
-        // debugger
         return `
         <!-- <h2> ${this.period} </h2> -->
         <button type="button" class="category-button" data-id=${this.id}>${this.period} </button>
@@ -36,13 +30,10 @@ class MezosoicEra{
     }
 
 
-
     // fetching shows dinosaurs by era
-    showDinosByEraId(e){   // use more obvious name! something that make sense
-        // debugger 
-        // find the show id from the dataset = e.target.dataset.id
-        let id = e.target.dataset.id
-        // fetching dinos by era
+    showDinosByEraId(e) {   
+        let id = e.target.dataset.id         // find the show id from the dataset = e.target.dataset.id
+        // ##fetching dinos by era
         fetch(`http://localhost:3000/mezosoic_eras/${id}/dinosaurs`)
         .then(resp => resp.json())
         .then(dinosaurs => { console.log ("fetched Dinos by each period", dinosaurs)
@@ -53,12 +44,38 @@ class MezosoicEra{
         dinosaurs.forEach( dinosaur=> {
             const newDinosaur = new Dinosaur(dinosaur)
             newDinosaur.renderDinosaur(dinosaur)
-
+           
             })
         })
     }
-
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// let newwEra = new MezosoicEra('newwEra') 
+// newwEra.renderMezosoicEra()
+// console.log(this.period)
 
 
     // const renderAllMezosoicEra =(mezosoicEraArray)=> {
