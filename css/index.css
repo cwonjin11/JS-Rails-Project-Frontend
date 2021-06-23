@@ -72,6 +72,10 @@ body {
     font-weight: bold;
  }
 
+ .close-button-editform{
+    position: relative;
+    height: 30px;
+}
 
 button {
     position: relative;
@@ -181,6 +185,9 @@ margin: 8px 0;
   .add-dino-form {
     width: 100%;
     height: 100%;
+    background-color: #00912ba6;
+    /* background: #00912ba6; */
+    /* opacity: .7; */
   } 
   
   .submit {
@@ -249,25 +256,36 @@ margin: 8px 0;
   
 
   
+form {
+    background-color: white;
+    /* display: block; */
 
-
+}
 
 
 /* flip card */
-
+  /* #dinosaur-edit {
+        background-color: rgb(236, 128, 128);
+    } */
+  /* #dino-edit-form{
+        background-color: rgb(246, 250, 0);
+    } */
+    
   .flip-card {
     background-color: transparent;
     width: 300px;
     height: 300px;
     padding: .6rem .4rem;
     display: inline-grid;
-    position: relative;
+    overflow: auto;
+    /* display: block; */
+    /* position: absolute; */
     /* display: grid; */
 
   }
   
   .flip-card-inner {
-    /* position: relative; */
+    /* position: absolute; */
     width: 100%;
     height: 100%;
     text-align: center;
@@ -317,11 +335,12 @@ margin: 8px 0;
   }
   /* end flip card */
 
-.form-to-edit{
+/* .form-to-edit{
     position: absolute;
     width: 100%;
     height: 100%;
-}
+} */
+
 
 
     /* #toy-header {
