@@ -1,9 +1,10 @@
-class Dinosaur{    //creating dino for the frontend object
+class Dinosaur{    //creating dino for the frontend object  // Javascript Class is not an object. It is a template for JavaScript objects.
 
 
     static all = []     ////  state😏🗃 of dinos  -- On the Frontend    ////  similar to  (@@all)
     // whenever we need to add somthing. To pass as whole object, use curly bracket{} for the attributes
     // The constructor method is a special method of a class for creating and initializing an object of that class.
+    // constructor({id, name, image, mezosoic_era_id, diets, height, size, weight, desc}) {
     constructor({id, name, image, mezosoic_era_id, diets, height, size, weight, desc}) {
             this.id = id,
             this.name = name,
@@ -14,6 +15,7 @@ class Dinosaur{    //creating dino for the frontend object
             this.size = size,
             this.weight = weight,
             this.desc = desc
+            // this.renderDinosaur()
     }  // ====>> calling this funcition to class API; new Dinosaur(dinosaur) 
 
 
@@ -27,21 +29,123 @@ class Dinosaur{    //creating dino for the frontend object
         ////  - In this case: class="card"
         cardDiv.classList.add("flip-card")
         cardDiv.setAttribute("data-id", dinosaur.id)
-            //  adding an (id=) to (cardDiv) 
-        cardDiv.id = dinosaur.id
-        // use innerHTML to create the inner elements
-        cardDiv.innerHTML = this.makeACard()
+        cardDiv.id = dinosaur.id            //  adding an (id=) to (cardDiv) 
+        cardDiv.innerHTML = this.makeACard()        // use innerHTML to create the inner elements
         const collectionDiv = document.querySelector("#dino-collection")
-    // collectionDiv.innerHTML = ""
-        // const collectionDiv = document.querySelector("#dino-collection")
         collectionDiv.append(cardDiv)
         cardDiv.addEventListener('click', e => {
             if (e.target.matches(".delete-btn")) this.deleteDino(e)
-            // if (e.target.matches(".edit-btn")) this.editDino(e)
+            if (e.target.matches(".edit-btn")){ 
 
+                const dinoToUpdate = e.target.closest(".flip-card")
+                const dinoToEditForm = document.createElement("form")
+                dinoToEditForm.innerHTML = `
+
+                <!--<div class="dinosaur-edit">-->
+
+                    <h2> 🦕 Edit this dino 🦕 </h2>
+                    
+                    <form>
+                    <h3>Dino name:</h3>
+                    <input type="text" name="name"
+                    value="${cardDiv.querySelector("h2").innerText}"
+                    placeholder="${cardDiv.querySelector("h2").innerText}"
+                    class="name-edit"/>
+                    <br>
+                   
+                    <h3>Image path:</h3>
+                    <input type="text" name="image"
+                    value="${cardDiv.querySelector("img").src}"
+                    placeholder="${cardDiv.querySelector("img").src}"
+                    class="image-edit"/>  
+
+                    <br>
+
+                    <h3>Weight:</h3>
+                    <input type="text" name="weight"
+                    value="${cardDiv.querySelector(".weight").innerText}"
+                    placeholder="${cardDiv.querySelector(".weight").innerText}"
+                    class="weight-edit"/><br>
+
+                    <h3>Description:</h3>
+                    <input type="text" name="desc"
+                    value="${cardDiv.querySelector(".description").innerText}"
+                    placeholder="${cardDiv.querySelector(".description").innerText}"
+                    class="desc-edit"/><br>
+
+                   
+                    <input type="submit" name="submit"
+                    value="Update"
+                    class="submit-button"/>
+                    <button class="close-button-editform">x</button>
+                    </form>
+              
+                    <br><br><br>
+                <!--</div>-->
+                `      
+                // console.log(">>>>>>>", dinoToEditForm) 
+
+                cardDiv.append(dinoToEditForm)
+                cardDiv.querySelector(".edit-btn").disabled = true
+                const notEdit = dinoToEditForm.querySelector(".close-button-editform")
+                notEdit.addEventListener("click", () => {
+                    dinoToEditForm.remove()
+                    cardDiv.querySelector(".edit-btn").disabled = false
+                })
+
+
+                dinoToEditForm.addEventListener("click", (event) => {
+                    event.preventDefault();
+                    if(event.target.matches(".submit-button")) {
+                        let editedName = dinoToEditForm.querySelector(".name-edit").value
+                        let editedImage = dinoToEditForm.querySelector(".image-edit").value
+                        let editedWeight = dinoToEditForm.querySelector(".weight-edit").value
+                        let editedDescription = dinoToEditForm.querySelector(".desc-edit").value
+
+                        const dinoObject = {
+                            name: editedName,
+                            image: editedImage,
+                            weight: editedWeight,
+                            desc: editedDescription
+                        }
+
+                        // const dinoID = dinoToUpdate.id
+                        const id = e.target.dataset.id
+                        // fetch(`http://localhost:3000/dinosaurs/${dinoID}`, {
+                        fetch(`${API.ALL_DINOSAURS_URL}/${id}`, {
+                            method: "PATCH",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify(dinoObject)
+                        })
+                        .then(resp => resp.json())
+                        .then(editedDino => {
+                            dinoToUpdate.querySelector("h2").innerText = editedDino.name
+                            dinoToUpdate.querySelector("h3").innerText = editedDino.name
+                            dinoToUpdate.querySelector("img").src = editedDino.image
+                            dinoToUpdate.querySelector(".weight").innerText = editedDino.weight
+                            dinoToUpdate.querySelector(".description").innerText = editedDino.desc
+                        })
+                        .then(dinoToEditForm.remove())
+                        cardDiv.querySelector(".edit-btn").disabled = false
+
+                    }
+
+
+                })
+
+
+
+            } //this.editDino(e)
+                
              
         })
     }
+
+
+
+
+
+
 
     makeACard = () =>{ //console.log(this)
         // get MesozoicEra attribute(in this case period) like MesozoicEra.period //
@@ -51,25 +155,30 @@ class Dinosaur{    //creating dino for the frontend object
             else {eraName = "Crateteous"}
 
         return `
+       
+            <div class="flip-card">
                 <div class="flip-card-inner">
                     <div class="flip-card-front" >
                         <img src=${this.image} class="dino-icon" />
-                        <h2 >${this.name}</h2>
+                        <h2>${this.name}</h2>
                     </div>
 
                     <div class="flip-card-back" >
                         <h3 style="color: #fdc52c;">${this.name}</h3>
-                        <p>diet : ${this.diets}</p>
+                        diet : <p style="display:inline" class="diet">${this.diets}</p><br>
                         <!-- <p>period : ${this.mezosoic_era_id}</p> -->
-                        <p>period : ${this.mezosoic_era_id = eraName}</p>
-                        <p>height : ${this.height}</p>
-                        <p>size : ${this.size}</p>
-                        <p>weight : ${this.weight}</p>
-                        <p>description : ${this.desc}</p>
-                        <!--<button data-id="${this.id}" class="edit-btn"> Edit</button>-->
+                        period : <p style="display:inline" class="period">${this.mezosoic_era_id = eraName}</p><br>
+                        height : <p style="display:inline" class="height">${this.height}</p><br>
+                        size : <p style="display:inline" class="size">${this.size}</p><br>
+                        weight : <p style="display:inline" class="weight">${this.weight}</p><br>
+                        description :  <p style="display:inline" class="description">${this.desc}</p>
+                        <button data-id="${this.id}" class="edit-btn"> Edit</button>
                         <button data-id="${this.id}" class="delete-btn"> Delete</button>
+                  
                     </div>
                 </div>
+            </div>
+        
                 
         `
     }  //makeACard end
@@ -84,12 +193,41 @@ class Dinosaur{    //creating dino for the frontend object
                 headers: { "Content-Type": "application/json" }
             })
             .then(response => response.json())
-            .then(
-                byeDino.remove()
+            .then( 
+                byeDino.remove() //or e.target.closest(".flip-card").remove()
                 )
     }
 
-}  //end
+}  // #########Class end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // collectionDiv.innerHTML = ""
+        // const collectionDiv = document.querySelector("#dino-collection")
 
     // editDino(e) {
 
@@ -151,7 +289,7 @@ class Dinosaur{    //creating dino for the frontend object
     //         //     )
 
     //             // greaseToggle(e){
-    //             //     const id = parseInt(e.target.parentElement.parentElement.id)
+    //             //     const id = parseInt(e.target.parentElement.parentElement.id)  <== parseInt => to.i in ruby
               
     //             //     fetch(`http://localhost:3000/hogs/${id}`,{
     //             //       method: 'PATCH',
