@@ -4,10 +4,9 @@ class API {
   // Fetch all dinosaurs without era division
     static ALL_DINOSAURS_URL = "http://localhost:3000/dinosaurs"
     static addDinosaurs() {
-      // fetch(this.ALL_DINOSAURS_URL)
-      fetch("http://localhost:3000/dinosaurs")  // <== Promise : The Promise object represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
+      fetch(this.ALL_DINOSAURS_URL)  // <== Promise : The Promise object represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
       .then(response => response.json())
-      .then(dinosaurs => {
+      .then(dinosaurs => { 
         // ****
           dinosaurs.forEach(dinosaur => { //console.log(dinosaur)
             const newDinosaur = new Dinosaur(dinosaur)
@@ -18,10 +17,9 @@ class API {
     }
 
 
-
     // Fetching all eras without dinos
     static MESOZOIC_ERA_URL = "http://localhost:3000/mezosoic_eras"
-    static createEras() {
+    static addEras() {
       fetch(this.MESOZOIC_ERA_URL)
       .then(resp => resp.json())
       .then(eras => {
@@ -57,9 +55,9 @@ class API {
         //  data.size, data.weight, data.desc )
       } else { 
               fetch("http://localhost:3000/dinosaurs", {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify(data)    //
+                    method: 'POST',                        // <== if not GET moethod, we need to define method here
+                    headers: {'Content-Type': 'application/json'},   //<== means we are communicating with JSON data type.
+                    body: JSON.stringify(data)    //  <== 
                   })
                   
                   // grab our fetch response
@@ -69,10 +67,11 @@ class API {
                     // new Dinosaur(id, name, image, mezosoic_era_id, diets, height, length, weight, desc)
                     
                     // dinosaurs.forEach(dinosaur => {
-                      // newDinosaur = > dino from frontend
-                // dinosaur => dino from the backend
+                    // newDinosaur = > dino from frontend
+                    // dinosaur => dino from the backend
                 const newDinosaur = new Dinosaur(dinosaur)
                 newDinosaur.renderDinosaur(dinosaur)
+
                 document.querySelector('.add-dino-form').reset()
                 });
             }; //close if conditions. 
