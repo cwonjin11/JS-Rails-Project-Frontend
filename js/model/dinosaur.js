@@ -39,6 +39,7 @@ class Dinosaur{    //creating dino for the frontend object  // Javascript Class 
 
                 const dinoToUpdate = e.target.closest(".flip-card")
                 const dinoToEditForm = document.createElement("form")
+                
                 dinoToEditForm.innerHTML = `
 
                 <!--<div class="dinosaur-edit">-->
@@ -54,12 +55,22 @@ class Dinosaur{    //creating dino for the frontend object  // Javascript Class 
                     <br>
                    
                     <h3>Image path:</h3>
-                    <input type="text" name="image"
+                    <input type="text" name="image" 
                     value="${cardDiv.querySelector("img").src}"
                     placeholder="${cardDiv.querySelector("img").src}"
-                    class="image-edit"/>  
+                    class="image-edit"/> <br> 
 
-                    <br>
+                    <h3>Height:</h3>
+                    <input type="text" name="height"
+                    value="${cardDiv.querySelector(".height").innerText}"
+                    placeholder="${cardDiv.querySelector(".height").innerText}"
+                    class="height-edit"/><br>
+
+                    <h3>Length:</h3>
+                    <input type="text" name="size"
+                    value="${cardDiv.querySelector(".size").innerText}"
+                    placeholder="${cardDiv.querySelector(".size").innerText}"
+                    class="size-edit"/><br>
 
                     <h3>Weight:</h3>
                     <input type="text" name="weight"
@@ -99,19 +110,24 @@ class Dinosaur{    //creating dino for the frontend object  // Javascript Class 
                     if(event.target.matches(".submit-button")) {
                         let editedName = dinoToEditForm.querySelector(".name-edit").value
                         let editedImage = dinoToEditForm.querySelector(".image-edit").value
+                        // let editedPeriod = dinoToEditForm.querySelector("select#period-edit").value
+                        let editedHeight = dinoToEditForm.querySelector(".height-edit").value
+                        let editedSize = dinoToEditForm.querySelector(".size-edit").value
                         let editedWeight = dinoToEditForm.querySelector(".weight-edit").value
                         let editedDescription = dinoToEditForm.querySelector(".desc-edit").value
 
                         const dinoObject = {
                             name: editedName,
                             image: editedImage,
+                            height: editedHeight,
+                            size: editedSize,
                             weight: editedWeight,
                             desc: editedDescription
                         }
 
                         // const dinoID = dinoToUpdate.id
                         const id = e.target.dataset.id
-                        // fetch(`http://localhost:3000/dinosaurs/${dinoID}`, {
+                        // fetch(`http://localhost:3000/dinosaurs/${dinoID}`, {`
                         fetch(`${API.ALL_DINOSAURS_URL}/${id}`, {
                             method: "PATCH",
                             headers: { "Content-Type": "application/json" },
@@ -122,6 +138,8 @@ class Dinosaur{    //creating dino for the frontend object  // Javascript Class 
                             dinoToUpdate.querySelector("h2").innerText = editedDino.name
                             dinoToUpdate.querySelector("h3").innerText = editedDino.name
                             dinoToUpdate.querySelector("img").src = editedDino.image
+                            dinoToUpdate.querySelector(".height").innerText = editedDino.height
+                            dinoToUpdate.querySelector(".size").innerText = editedDino.size
                             dinoToUpdate.querySelector(".weight").innerText = editedDino.weight
                             dinoToUpdate.querySelector(".description").innerText = editedDino.desc
                         })
@@ -165,13 +183,13 @@ class Dinosaur{    //creating dino for the frontend object  // Javascript Class 
 
                     <div class="flip-card-back" >
                         <h3 style="color: #fdc52c;">${this.name}</h3>
-                        diet : <p style="display:inline" class="diet">${this.diets}</p><br>
+                        Diet : <p style="display:inline" class="diet">${this.diets}</p><br>
                         <!-- <p>period : ${this.mezosoic_era_id}</p> -->
-                        period : <p style="display:inline" class="period">${this.mezosoic_era_id = eraName}</p><br>
-                        height : <p style="display:inline" class="height">${this.height}</p><br>
-                        size : <p style="display:inline" class="size">${this.size}</p><br>
-                        weight : <p style="display:inline" class="weight">${this.weight}</p><br>
-                        description :  <p style="display:inline" class="description">${this.desc}</p>
+                        Period : <p style="display:inline" class="period">${this.mezosoic_era_id = eraName}</p><br>
+                        Height : <p style="display:inline" class="height">${this.height}</p><br>
+                        Length : <p style="display:inline" class="size">${this.size}</p><br>
+                        Weight : <p style="display:inline" class="weight">${this.weight}</p><br>
+                        Description :  <p style="display:inline" class="description">${this.desc}</p>
                         <button data-id="${this.id}" class="edit-btn"> Edit</button>
                         <button data-id="${this.id}" class="delete-btn"> Delete</button>
                   
