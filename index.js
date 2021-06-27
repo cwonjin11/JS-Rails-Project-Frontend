@@ -1,44 +1,36 @@
 let showTheForm = true
 
 
-document.addEventListener("click", (event) => { 
-    console.log("ʘ CLICKED ʘ", event.target) 
-}); 
-
+document.addEventListener("click", (event) => { console.log("ʘ CLICKED ʘ", event.target) }); 
 
 document.addEventListener("DOMContentLoaded", () => { //console.log("🦕🦕Dinosaurs Showtime🦖🦖")       ////// The DOMContentLoaded event fires when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading
-
+    mouseOverEvent()        // Header Color changes
+    API.addEras()           //  << First view of web page. Showing all Eras  //callback function
+    API.addDinosaurs() 
 
   // ##################### FORM ##############################################   
     // hide-and-seek form //
-
     const dinoFormContainer = document.querySelector(".container")
     const buttonToShowUsTheForm = document.querySelector("#new-dino-btn"); //|| document.querySelector(".close-button");
-    buttonToShowUsTheForm.addEventListener("click",  () => {
-        showTheForm  = !showTheForm;
-        if  (showTheForm) 
-            {dinoFormContainer.style.display = "none";}      //default  // {blocked scope} : let, const  vs function scope : var
-        else  
-            {dinoFormContainer.style.display = "block";}
-    });
-    
+        buttonToShowUsTheForm.addEventListener("click",  () => {
+            showTheForm  = !showTheForm;
+            if  (showTheForm) 
+                {dinoFormContainer.style.display = "none";}      //default  // {blocked scope} : let, const  vs function scope : var
+            else  
+                {dinoFormContainer.style.display = "block";}
+        });
         // ## form close button //
     const buttonToCloseTheForm =  document.querySelector(".close-button");
-    buttonToCloseTheForm.addEventListener("click",  () => {
-        if (showTheForm = true ) {
-            dinoFormContainer.style.display = "none";
-        }
-    });
-
+        buttonToCloseTheForm.addEventListener("click",  () => {
+            if (showTheForm = true ) {
+                dinoFormContainer.style.display = "none";
+            }
+        });
     document.querySelector('.container').addEventListener('submit', API.newDinoForm)    // submit form 
 
    // ################################################################### 
-  
-  
 
-
-    API.addEras()           //  << First view of web page. Showing all Eras  //callback function
-    API.addDinosaurs()      // << First view of web page. showing all dinosaurs
+     // << First view of web page. showing all dinosaurs
 
     // ############## get all dinos by clicking <All Dinos> button  ##########
         // const filterItems = (arr, query) => {
@@ -55,14 +47,29 @@ document.addEventListener("DOMContentLoaded", () => { //console.log("🦕🦕Din
 
         //   console.log(filterItems(API.addDinosaurs(),'sa'))
 
+        
+  
 });   //ENd "DOMContentLoaded"
 
 
 
+const dinosaurColors = ["green", "lightgreen", "yellow",  "brown", "red", "gold"]
+let index = 0
+const maxIndex = dinosaurColors.length
 
 
+const changeColor = (title) => {
+    title.style.color = dinosaurColors[index++]
+    if(index == maxIndex){
+        index = 0;
+    }
+  }
 
-
+// test eventlistener other then click. 
+function mouseOverEvent(){
+    const head = document.querySelector("h1")
+    head.addEventListener("mouseover", ()=> changeColor(head))
+}
 
 
 
