@@ -168,8 +168,8 @@ class Dinosaur{    //creating dino for the frontend object  // Javascript Class 
                             dinoToUpdate.querySelector("h3").innerText = editedDino.name
                             dinoToUpdate.querySelector("img").src = editedDino.image
                             dinoToUpdate.querySelector("p").dataset.id = editedDino.mezosoic_era_id
-                            console.log(editedDino.mezosoic_era_id)
-                            console.log(dinoToUpdate.querySelector("p").dataset.id)
+                            // console.log(editedDino.mezosoic_era_id)
+                            // console.log(dinoToUpdate.querySelector("p").dataset.id)
                             dinoToUpdate.querySelector(".height").innerText = editedDino.height
                             dinoToUpdate.querySelector(".size").innerText = editedDino.size
                             dinoToUpdate.querySelector(".weight").innerText = editedDino.weight

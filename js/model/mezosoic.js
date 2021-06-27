@@ -41,7 +41,16 @@ class MezosoicEra{
         const collectionDiv = document.querySelector("#dino-collection")
         collectionDiv.innerHTML = ""   // make other eras blank
         
-        dinosaurs.forEach( dinosaur=> {
+        dinosaurs.sort((a, b) => {
+            let nameA = a.name.toUpperCase();
+            let nameB = b.name.toUpperCase();
+              if (nameA < nameB) {
+              return -1;
+            }
+            if (nameA > nameB) {
+              return 1;
+            }//textA.name > textB.name ? 1 : -1)
+          }).forEach( dinosaur=> {
             const newDinosaur = new Dinosaur(dinosaur)
             newDinosaur.renderDinosaur(dinosaur)
            

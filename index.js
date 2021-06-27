@@ -40,18 +40,20 @@ document.addEventListener("DOMContentLoaded", () => { //console.log("🦕🦕Din
     API.addEras()           //  << First view of web page. Showing all Eras  //callback function
     API.addDinosaurs()      // << First view of web page. showing all dinosaurs
 
-
-
     // ############## get all dinos by clicking <All Dinos> button  ##########
-
+        // const filterItems = (arr, query) => {
+        //     return arr.filter(el => el.toLowerCase().indexOf(query.toLowerCase()) !== -1)
+        //   }
         const getAllDinos = document.querySelector('.all-dinos') // console.log(getAllDinos)
               getAllDinos.addEventListener("click", () => {
         const collectionDiv = document.querySelector("#dino-collection")
               collectionDiv.innerHTML = ""
               API.addDinosaurs()
+
         });
 
 
+        //   console.log(filterItems(API.addDinosaurs(),'sa'))
 
 });   //ENd "DOMContentLoaded"
 

@@ -8,7 +8,16 @@ class API {
       .then(response => response.json()) 
       .then(dinosaurArray => { //console.log(">>", dinosaurArray)
         // ****
-        dinosaurArray.forEach(dinosaur => { //console.log("single dino", dinosaur)
+        dinosaurArray.sort((a, b) => { //sort by name in alphabetical order
+          let nameA = a.name.toUpperCase();
+          let nameB = b.name.toUpperCase();
+            if (nameA < nameB) {
+            return -1;
+          }
+          if (nameA > nameB) {
+            return 1;
+          }//textA.name > textB.name ? 1 : -1)
+        }).forEach(dinosaur => { //console.log("single dino", dinosaur.name)
             const newDinosaur = new Dinosaur(dinosaur)        //dinosaur(backend) to dinosaur(frontend)
             newDinosaur.renderDinosaur(dinosaur)              //dinosaur(frontend) to DOM   
             Dinosaur.all.push(newDinosaur)
@@ -57,7 +66,7 @@ class API {
               fetch("http://localhost:3000/dinosaurs", {
                     method: 'POST',                        // <== if not GET moethod, we need to define method here
                     headers: {'Content-Type': 'application/json'},   //<== means we are communicating with JSON data type.
-                    body: JSON.stringify(data)    //  <== 
+                    body: JSON.stringify(data)
                   })
                   
                   // grab our fetch response
