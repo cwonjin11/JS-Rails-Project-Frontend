@@ -47,6 +47,7 @@ class Dinosaur{    //creating dino for the frontend object  // Javascript Class 
                 // const catchEditForm = dinoToEditForm.setAttribute("id", "edit-form")
                     // console.log("where r you", catchEditForm)
  
+                // const dinoEraDropDownValue = cardDiv.querySelector(".period").dataset.id
                 const dinoEraDropDownValue = cardDiv.querySelector(".period").dataset.id
                 // const dinoEraDropDownValue = dinoToEditForm.getElementById('era_dropdown').selectedValue
                 console.log(dinoEraDropDownValue)
@@ -77,8 +78,8 @@ class Dinosaur{    //creating dino for the frontend object  // Javascript Class 
                     class="image-edit"/> <br> 
                     
                     <h3>Era:</h3>
-                    <select id="era_dropdown" name="period" class="era-edit">
-                    <option value="${this.mezosoic_era_id}" selected> ${this.mezosoic_era_id} </option>
+                    <select id="era_dropdown" class="era-edit">
+                    <option value="${dinoEraDropDownValue}" selected> ${this.mezosoic_era_id} </option>
                     <option value="1">Triassic</option>
                     <option value="2">Jurassic</option>
                     <option value="3">Cretaceous</option>
@@ -166,9 +167,9 @@ class Dinosaur{    //creating dino for the frontend object  // Javascript Class 
                             dinoToUpdate.querySelector("h2").innerText = editedDino.name
                             dinoToUpdate.querySelector("h3").innerText = editedDino.name
                             dinoToUpdate.querySelector("img").src = editedDino.image
-                            dinoToUpdate.querySelector(".period").dataset.id = editedDino.mezosoic_era_id
+                            dinoToUpdate.querySelector("p").dataset.id = editedDino.mezosoic_era_id
                             console.log(editedDino.mezosoic_era_id)
-                            console.log(dinoToUpdate.querySelector(".period").dataset.id)
+                            console.log(dinoToUpdate.querySelector("p").dataset.id)
                             dinoToUpdate.querySelector(".height").innerText = editedDino.height
                             dinoToUpdate.querySelector(".size").innerText = editedDino.size
                             dinoToUpdate.querySelector(".weight").innerText = editedDino.weight

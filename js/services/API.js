@@ -1,29 +1,29 @@
-class API {
+class API { 
 
 
   // Fetch all dinosaurs without era division
     static ALL_DINOSAURS_URL = "http://localhost:3000/dinosaurs"
     static addDinosaurs() {
       fetch(this.ALL_DINOSAURS_URL)  // <== Promise : The Promise object represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
-      .then(response => response.json())
-      .then(dinosaurs => { 
+      .then(response => response.json()) 
+      .then(dinosaurArray => { //console.log(">>", dinosaurArray)
         // ****
-          dinosaurs.forEach(dinosaur => { //console.log(dinosaur)
-            const newDinosaur = new Dinosaur(dinosaur)
-            newDinosaur.renderDinosaur(dinosaur)     
+        dinosaurArray.forEach(dinosaur => { //console.log("single dino", dinosaur)
+            const newDinosaur = new Dinosaur(dinosaur)        //dinosaur(backend) to dinosaur(frontend)
+            newDinosaur.renderDinosaur(dinosaur)              //dinosaur(frontend) to DOM   
             Dinosaur.all.push(newDinosaur)
         })
       }) 
     }
 
-
+    
     // Fetching all eras without dinos
     static MESOZOIC_ERA_URL = "http://localhost:3000/mezosoic_eras"
     static addEras() {
       fetch(this.MESOZOIC_ERA_URL)
       .then(resp => resp.json())
-      .then(eras => {
-          eras.forEach(era => {
+      .then(eraArray => { //console.log("all eras in array", eraArray)
+          eraArray.forEach(era => { //console.log("single era",era)
             const{id, period} = era
             new MezosoicEra(id, period)
           })
@@ -76,13 +76,13 @@ class API {
                 });
             }; //close if conditions. 
 
-
+           
     }; // close preventDefault
 
 
 
     
-
+  
   }; //close all
 
           
