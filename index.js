@@ -1,14 +1,13 @@
 let showTheForm = true
 
-
 document.addEventListener("click", (event) => { console.log("ʘ CLICKED ʘ", event.target) }); 
-
-document.addEventListener("DOMContentLoaded", () => { //console.log("🦕🦕Dinosaurs Showtime🦖🦖")       ////// The DOMContentLoaded event fires when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading
+document.addEventListener("DOMContentLoaded", () => { // The DOMContentLoaded event fires when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading
     mouseOverEvent()        // Header Color changes
     API.addEras()           //  << First view of web page. Showing all Eras  //callback function
     API.addDinosaurs() 
 
-  // ##################### FORM ##############################################   
+
+  // ##################### FORM ####################################################   
     // hide-and-seek form //
     const dinoFormContainer = document.querySelector(".container")
     const buttonToShowUsTheForm = document.querySelector("#new-dino-btn"); //|| document.querySelector(".close-button");
@@ -27,49 +26,42 @@ document.addEventListener("DOMContentLoaded", () => { //console.log("🦕🦕Din
             }
         });
     document.querySelector('.container').addEventListener('submit', API.newDinoForm)    // submit form 
+   // ############################################################################### 
 
-   // ################################################################### 
-
-     // << First view of web page. showing all dinosaurs
 
     // ############## get all dinos by clicking <All Dinos> button  ##########
-        // const filterItems = (arr, query) => {
-        //     return arr.filter(el => el.toLowerCase().indexOf(query.toLowerCase()) !== -1)
-        //   }
         const getAllDinos = document.querySelector('.all-dinos') // console.log(getAllDinos)
               getAllDinos.addEventListener("click", () => {
         const collectionDiv = document.querySelector("#dino-collection")
               collectionDiv.innerHTML = ""
               API.addDinosaurs()
-
         });
-
-
-        //   console.log(filterItems(API.addDinosaurs(),'sa'))
-
-        
-  
 });   //ENd "DOMContentLoaded"
 
 
 
-const dinosaurColors = ["green", "lightgreen", "yellow",  "brown", "red", "gold"]
-let index = 0
-const maxIndex = dinosaurColors.length
 
 
-const changeColor = (title) => {
-    title.style.color = dinosaurColors[index++]
-    if(index == maxIndex){
-        index = 0;
+
+//############## title text color change effect ##############
+
+    const dinosaurColors = ["green", "lightgreen", "yellow", "yellowgreen",  "brown", "red", "gold"]
+    let index = 0
+    const maxIndex = dinosaurColors.length
+
+    const changeColor = (title) => {
+        title.style.color = dinosaurColors[index++]
+        if(index == maxIndex){
+            index = 0;
+        }
     }
-  }
-
-// test eventlistener other then click. 
-function mouseOverEvent(){
-    const head = document.querySelector("h1")
-    head.addEventListener("mouseover", ()=> changeColor(head))
+    
+    // test eventlistener other then click. 
+    function mouseOverEvent(){
+        const head = document.querySelector("h1")
+        head.addEventListener("mouseover", ()=> changeColor(head))
 }
+//##############################################################
 
 
 
@@ -90,6 +82,63 @@ function mouseOverEvent(){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// hoisting practice with var let const 
+// function nameIs() {
+//     let nameis = "Ian"
+//     console.log("my name is " + nameis)
+//     // let name = "Ian"
+//     // console.log("my name is " + `${name}`)
+// }
+// // console.log("my name is " + nameis)
+// nameIs()
+
+
+// function myAge() {
+//     let age = 30
+//     console.log("show age", age)
+//     // var age =30
+//     // let age = 30
+//     // age = 30
+//     // let age
+//     // console.log("show age", age)
+// //     console.log(age)
+// }
+// myAge()
+
+// const x;
+// x = "hello"
+// const x = "hello"
+// let x;
+// x = "hello"
+// console.log(x)
+
+
+
+
+
+
+// console.log(num); // Returns undefined, as only declaration was hoisted, no initialization has happened at this stage
+// var num; // Declaration
+// num = 6; 
+
+
+
+// console.log(num); // Throws ReferenceError exception
+// num = 6;
 
 
 

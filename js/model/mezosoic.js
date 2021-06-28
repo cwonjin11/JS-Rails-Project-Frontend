@@ -30,9 +30,9 @@ class MezosoicEra{
     }
 
 
-    // fetching shows dinosaurs by era
+    // fetching era including dinosaurs
     showDinosByEraId(e) {   
-        let id = e.target.dataset.id         // find the show id from the dataset = e.target.dataset.id
+        let id = e.target.dataset.id         // find the id from the dataset = e.target.dataset.id
         // ##fetching dinos by era
         fetch(`http://localhost:3000/mezosoic_eras/${id}/dinosaurs`)
         .then(resp => resp.json())
@@ -49,7 +49,7 @@ class MezosoicEra{
             }
             if (nameA > nameB) {
               return 1;
-            }//textA.name > textB.name ? 1 : -1)
+            }
           }).forEach( dinosaur=> {
             const newDinosaur = new Dinosaur(dinosaur)
             newDinosaur.renderDinosaur(dinosaur)

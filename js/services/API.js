@@ -66,11 +66,12 @@ class API {
               fetch("http://localhost:3000/dinosaurs", {
                     method: 'POST',                        // <== if not GET moethod, we need to define method here
                     headers: {'Content-Type': 'application/json'},   //<== means we are communicating with JSON data type.
-                    body: JSON.stringify(data)
+                    body: JSON.stringify(data)       // It will take a JSON object or value and change it into string.
+                    // We transport data in JSON and then use stringify to manipulate it on the front end.
                   })
                   
                   // grab our fetch response
-              .then(response => response.json())
+              .then(response => response.json())  // .json() => It is converting the data that is sent to us to into json
               .then(dinosaur => {
                     // const {id, name, image, mezosoic_era_id, diets, height, length, weight, desc} = dinosaur
                     // new Dinosaur(id, name, image, mezosoic_era_id, diets, height, length, weight, desc)
@@ -80,8 +81,9 @@ class API {
                     // dinosaur => dino from the backend
                 const newDinosaur = new Dinosaur(dinosaur)
                 newDinosaur.renderDinosaur(dinosaur)
-
+                
                 document.querySelector('.add-dino-form').reset()
+                alert("Dinosaur has been added")
                 });
             }; //close if conditions. 
 
@@ -97,6 +99,11 @@ class API {
           
 
 // ===========================================
+
+
+
+
+
 
 
 
