@@ -1,41 +1,17 @@
-let showTheForm = true
 
 document.addEventListener("click", (event) => { console.log("ʘ CLICKED ʘ", event.target) }); 
-document.addEventListener("DOMContentLoaded", () => { // The DOMContentLoaded event fires when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading
-    mouseOverEvent()        // Header Color changes
-    API.addEras()           //  << First view of web page. Showing all Eras  //callback function
-    API.addDinosaurs() 
 
 
-  // ##################### FORM ####################################################   
-    // hide-and-seek form //
-    const dinoFormContainer = document.querySelector(".container")
-    const buttonToShowUsTheForm = document.querySelector("#new-dino-btn"); //|| document.querySelector(".close-button");
-        buttonToShowUsTheForm.addEventListener("click",  () => {
-            showTheForm  = !showTheForm;
-            if  (showTheForm) 
-                {dinoFormContainer.style.display = "none";}      //default  // {blocked scope} : let, const  vs function scope : var
-            else  
-                {dinoFormContainer.style.display = "block";}
-        });
-        // ## form close button //
-    const buttonToCloseTheForm =  document.querySelector(".close-button");
-        buttonToCloseTheForm.addEventListener("click",  () => {
-            if (showTheForm = true ) {
-                dinoFormContainer.style.display = "none";
-            }
-        });
-    document.querySelector('.container').addEventListener('submit', API.newDinoForm)    // submit form 
-   // ############################################################################### 
+document.addEventListener("DOMContentLoaded", () => { 
+   API.addEras()           //   First view of web page. Showing all Eras  
+        //   Showing all Dinosaurs 
+
+    mouseOverEvent()        // Header Color changes for fun
+    getAllDinos()           // by clicking all dinosaurs, I can get all dinosaurs back again
+    hideSeekForm()          // make the dino creation form appeared or disappeared. 
 
 
-    // ############## get all dinos by clicking <All Dinos> button  ##########
-        const getAllDinos = document.querySelector('.all-dinos') // console.log(getAllDinos)
-              getAllDinos.addEventListener("click", () => {
-        const collectionDiv = document.querySelector("#dino-collection")
-              collectionDiv.innerHTML = ""
-              API.addDinosaurs()
-        });
+    
 });   //ENd "DOMContentLoaded"
 
 
@@ -43,25 +19,78 @@ document.addEventListener("DOMContentLoaded", () => { // The DOMContentLoaded ev
 
 
 
-//############## title text color change effect ##############
 
+
+
+
+
+
+
+
+
+
+// ##################### FORM ####################################################   
+hideSeekForm =() => {
+    let showTheForm = true
+    // hide-and-seek form //
+        const dinoFormContainer = document.querySelector(".container")
+        const buttonToShowUsTheForm = document.querySelector("#new-dino-btn"); 
+            buttonToShowUsTheForm.addEventListener("click",  () => {
+                showTheForm  = !showTheForm;
+                if  (showTheForm) 
+                    {dinoFormContainer.style.display = "none";}  
+                else  
+                    {dinoFormContainer.style.display = "block";}
+            });
+
+            // ## form close button //
+        const buttonToCloseTheForm =  document.querySelector(".close-button");
+            buttonToCloseTheForm.addEventListener("click",  () => {
+                if (showTheForm = true ) {
+                    dinoFormContainer.style.display = "none";
+                }
+            });
+        document.querySelector('.container').addEventListener('submit', API.newDinoForm)           // submit form 
+        // We only need input values after someone hit submit.
+        // "after this form is submitted, it is calling form handler"
+        //API.newDinoForm is the form handler to grab all of the values for my inputs
+    }
+// ############################################################################### 
+
+
+
+// ############## get all dinos by clicking <All Dinos> button  ##################
+// function getAllDinos () {
+    //changed to arrow function
+getAllDinos = () => { 
+    const getAllDinos = document.querySelector('.all-dinos') 
+    getAllDinos.addEventListener("click", () => {
+        const collectionDiv = document.querySelector("#dino-collection")
+        collectionDiv.innerHTML = ""   // Hide dino-collection first. 
+        API.addDinosaurs()             //then show all dinosaurs by clicking "All dinos" button in the browser
+    });
+}
+// ############################################################################### 
+
+
+
+// ########################### mouseOverEvent #################################### 
+        // test eventlistener other then "click" event, in this case mouseover. 
+mouseOverEvent=() => {
+    //title text color change effect
     const dinosaurColors = ["green", "lightgreen", "yellow", "yellowgreen",  "brown", "red", "gold"]
-    let index = 0
+        let index = 0
     const maxIndex = dinosaurColors.length
-
     const changeColor = (title) => {
         title.style.color = dinosaurColors[index++]
         if(index == maxIndex){
             index = 0;
         }
     }
-    
-    // test eventlistener other then click. 
-    function mouseOverEvent(){
-        const head = document.querySelector("h1")
+    const head = document.querySelector("h1")
         head.addEventListener("mouseover", ()=> changeColor(head))
-}
-//##############################################################
+    }
+// ############################################################################### 
 
 
 
@@ -86,6 +115,25 @@ document.addEventListener("DOMContentLoaded", () => { // The DOMContentLoaded ev
 
 
 
+
+
+
+
+
+
+// const dinoList = document.querySelectorAll("#dino-collection h3")
+// console.log(dinoList)
+// const searchBar = document.querySelector("#searchBar")
+// searchBar.addEventListener('keyup', (event) => {
+//     const searchString = event.target.value.toLowerCase()
+//     let filteredDinos = sightsArray.filter((si) => {
+//         return (si.name.toLowerCase().startsWith(searchString))
+//     })
+//     if (searchString != "") {
+//         displaySights(filteredDinos)
+//         } else {
+//             sightsList.innerHTML = ""
+//         }})
 
 
 
