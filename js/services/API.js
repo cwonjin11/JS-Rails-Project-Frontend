@@ -1,51 +1,61 @@
 class API { 
 
-
-  // Fetch all dinosaurs without era division
     static ALL_DINOSAURS_URL = "http://localhost:3000/dinosaurs"
-    static addDinosaurs() {
-      fetch(this.ALL_DINOSAURS_URL)  // <== Promise : The Promise object represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
+    static MESOZOIC_ERA_URL = "http://localhost:3000/mezosoic_eras"
+
+
+    static addDinosaurs () {
+      fetch(this.ALL_DINOSAURS_URL)                               
       .then(response => response.json()) 
-      .then(dinosaurArray => { //console.log(">>", dinosaurArray)
-        // ****
-        dinosaurArray.sort((a, b) => { //sort by name in alphabetical order
+      .then(dinosaurArray => { console.log(">>", dinosaurArray)
+        // console.log("a")    // "asynchronous" example
+        dinosaurArray
+        .sort((a, b) => {                                             //sort by name in alphabetical order
           let nameA = a.name.toUpperCase();
           let nameB = b.name.toUpperCase();
             if (nameA < nameB) {
             return -1;
-          }
+          }                                                          // Uncomment to sort dinosaurs in alphbetical order
           if (nameA > nameB) {
             return 1;
           }//textA.name > textB.name ? 1 : -1)
-        }).forEach(dinosaur => { //console.log("single dino", dinosaur.name)
-            const newDinosaur = new Dinosaur(dinosaur)        //dinosaur(backend) to dinosaur(frontend)
+        })
+        .forEach(dinosaur => { //console.log("single dino", dinosaur.name)    //we are iterating over the json data that we get back from our api
+            // debugger
+            const newDinosaur = new Dinosaur(dinosaur)        //dinosaur(backend) to Dinosaur(frontend)
             newDinosaur.renderDinosaur(dinosaur)              //dinosaur(frontend) to DOM   
             Dinosaur.all.push(newDinosaur)
         })
-      }) 
+      })
+      //console.log("b")    // "asynchronous" example
+    
     }
 
-    
-    // Fetching all eras without dinos
-    static MESOZOIC_ERA_URL = "http://localhost:3000/mezosoic_eras"
+
+  // factoring out by using nested json data 
+
     static addEras() {
       fetch(this.MESOZOIC_ERA_URL)
       .then(resp => resp.json())
-      .then(eraArray => { //console.log("all eras in array", eraArray)
-          eraArray.forEach(era => { //console.log("single era",era)
-            const{id, period} = era
-            new MezosoicEra(id, period)
+      .then(eraArray => { console.log("all eras in array", eraArray)
+          eraArray.forEach(era => { //console.log("era.dinosaurs", era.dinosaurs)          
+            const newMezosoicEra = new MezosoicEra(era)              // 'era' from the backend to MezosoicEra, the front end.
+            newMezosoicEra.renderMezosoicEra(era)                    //include: :dinosaurs from nested json
+ 
+          era.dinosaurs.forEach( dinosaur => { //console.log("dinosaur", dinosaur)   //using nested json 
+            const newDinosaur = new Dinosaur(dinosaur)              //dinosaur(backend) to Dinosaur(frontend)
+            newDinosaur.renderDinosaur(dinosaur)                    //dinosaur(frontend) to DOM
+            })              
           })
       })
     }
+   
 
-
-
- // Add dinos & Post Fetch 
-    // static ALL_DINOSAURS_URL = "http://localhost:3000/dinosaurs"
-    static newDinoForm(e) { e.preventDefault()
-
-      let data = { //name, image, mezosoic_era_id, diets, height, length, weight, desc
+ // The form handler ;; Add dinos & Post Fetch   
+    static newDinoForm(e) { e.preventDefault();
+      console.log("Submit default is refreshing th page. 'e.PreventDefault();' will prevent refreshing the page and show this message", e)
+      // debugger
+      let data = {   // this data will send to my api 
         'name': e.target.name.value,
         'image': e.target.image.value,
         'mezosoic_era_id': e.target.mezosoic_era_id.value,
@@ -60,41 +70,42 @@ class API {
       if ( data.name == 0 || data.image == 0 || data.mezosoic_era_id == 0 || data.diets == 0 ||
          data.height == 0 || data.size == 0 || data.weight == 0 || data.desc == 0) {
         alert("input can not be empty");
-        // console.log("Hey, if inputs not filled, No post requested!!!", data.name, data.image, data.mezosoic_era_id, data.diets, data.height, 
-        //  data.size, data.weight, data.desc )
       } else { 
-              fetch("http://localhost:3000/dinosaurs", {
-                    method: 'POST',                        // <== if not GET moethod, we need to define method here
-                    headers: {'Content-Type': 'application/json'},   //<== means we are communicating with JSON data type.
-                    body: JSON.stringify(data)       // It will take a JSON object or value and change it into string.
-                    // We transport data in JSON and then use stringify to manipulate it on the front end.
+              // fetch("http://localhost:3000/dinosaurs", {
+              fetch(`${API.ALL_DINOSAURS_URL}`, {
+                    method: 'POST',                                     //sending a POST request to my API         
+                    headers: {'Content-Type': 'application/json'},   
+                    body: JSON.stringify(data)                          //how we are going to send data
                   })
-                  
-                  // grab our fetch response
-              .then(response => response.json())  // .json() => It is converting the data that is sent to us to into json
+              .then(response => response.json())  
               .then(dinosaur => {
-                    // const {id, name, image, mezosoic_era_id, diets, height, length, weight, desc} = dinosaur
-                    // new Dinosaur(id, name, image, mezosoic_era_id, diets, height, length, weight, desc)
-                    
-                    // dinosaurs.forEach(dinosaur => {
-                    // newDinosaur = > dino from frontend
-                    // dinosaur => dino from the backend
                 const newDinosaur = new Dinosaur(dinosaur)
                 newDinosaur.renderDinosaur(dinosaur)
-                
-                document.querySelector('.add-dino-form').reset()
+                document.querySelector('.add-dino-form').reset()   //reset the form against preventDefault
                 alert("Dinosaur has been added")
                 });
             }; //close if conditions. 
-
-           
     }; // close preventDefault
 
 
+  // Delete Fetch ### delete a Dinosaur ###
+    static  deleteDino(e) {
+      const id = e.target.dataset.id
+      const byeDino = document.getElementById(id)
+          // fetch(`http://localhost:3000/dinosaurs/${id}`, {
+          fetch(`${this.ALL_DINOSAURS_URL}/${id}`, {
+              method: "DELETE",
+              headers: { "Content-Type": "application/json" }
+          })
+          .then(response => response.json())
+          .then( 
+              byeDino.remove() //or e.target.closest(".flip-card").remove()
+              )
+    }
 
     
   
-  }; //close all
+}; //close all
 
           
 
@@ -121,6 +132,22 @@ class API {
 
 
 
+
+  //===========================================================================================
+    //Original
+    // Fetching all eras without dinos 
+    // static MESOZOIC_ERA_URL = "http://localhost:3000/mezosoic_eras"
+    // static addEras() {
+    //   fetch(this.MESOZOIC_ERA_URL)
+    //   .then(resp => resp.json())
+    //   .then(eraArray => { //console.log("all eras in array", eraArray)
+    //       eraArray.forEach(era => { //console.log("single era",era)
+    //         const{id, period} = era
+    //         new MezosoicEra(id, period)
+    //       })
+    //   })
+    // }
+  //=====================================================================================
 
 
 
