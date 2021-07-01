@@ -1,10 +1,6 @@
-class Dinosaur{    //creating dino for the frontend object  // Javascript Class is not an object. It is a template for JavaScript objects.
+class Dinosaur{
 
-
-    static all = []     ////  state😏🗃 of dinos  -- On the Frontend    ////  similar to  (@@all)
-    // whenever we need to add somthing. To pass as whole object, use curly bracket{} for the attributes
-    // The constructor method is a special method of a class for creating and initializing an object of that class.
-    // We Use Our Class Constructor for Any Creation of a Frontend Instance of an Object of this Class 
+    static all = []    
     constructor({id, name, image, mezosoic_era_id, diets, height, size, weight, desc}) {
             this.id = id,
             this.name = name,
@@ -15,45 +11,29 @@ class Dinosaur{    //creating dino for the frontend object  // Javascript Class 
             this.size = size,
             this.weight = weight,
             this.desc = desc
-            // this.renderDinosaur()
-    }  // ====>> calling this funcition to class API; new Dinosaur(dinosaur) 
+    }  
+
 
 
 // ################## set renderDino #########################
-
     renderDinosaur = (dinosaur) => { //console.log(dinosaur)
-    // Create the Outer Wrapping/Containing Element 
-    ////  - In this case a <div>
         const cardDiv = document.createElement("div")
-        // Assigning any classes etc to it
-        ////  - In this case: class="card"
-        cardDiv.classList.add("flip-card") //we add a class to "div" a "flip-card"
-        cardDiv.setAttribute("data-id", dinosaur.id) //put an id on this card and set it equals to its id // adding a dataset id of the dinosaur object id that's coming from renderDinosaur passed in our fetch
-        cardDiv.id = dinosaur.id            //  adding an (id=) to (cardDiv) 
+        cardDiv.classList.add("flip-card") //add a class to "div" a "flip-card"
+        cardDiv.setAttribute("data-id", dinosaur.id) 
+        cardDiv.id = dinosaur.id           
         cardDiv.innerHTML = this.makeACard()  
         document.querySelector("#dino-collection").append(cardDiv)
-        
-        // use innerHTML to create the inner elements
-        // const collectionDiv = document.querySelector("#dino-collection")
-        // collectionDiv.append(cardDiv)
+
         cardDiv.addEventListener('click', e => {
-            if (e.target.matches(".delete-btn")) this.deleteDino(e)
-
+            if (e.target.matches(".delete-btn")) API.deleteDino(e)
             if (e.target.matches(".edit-btn")) { 
-
-
                 const dinoToUpdate = e.target.closest(".flip-card")
-                    //   console.log("dinoToUpdate.id", dinoToUpdate.id)
                 const dinoToEditForm = document.createElement('form')
-
-                
                 const dinoEraDropDownValue = cardDiv.querySelector(".period").dataset.id
-                console.log(dinoEraDropDownValue)        
-
+                //console.log(dinoEraDropDownValue)        
                 dinoToEditForm.innerHTML = `
 
                     <h2> 🦕 Edit this dino 🦕 </h2>
-                    
                     <form class="dino-edit-form">
 
                     <h3>Dino name:</h3>
@@ -77,7 +57,6 @@ class Dinosaur{    //creating dino for the frontend object  // Javascript Class 
                     <!--<option value="" disabled selected>Lived...</option>-->
                     </select>
                     
-
                     <h3>Height:</h3>
                     <input type="text" name="height"
                     value="${cardDiv.querySelector(".height").innerText}"
@@ -102,7 +81,6 @@ class Dinosaur{    //creating dino for the frontend object  // Javascript Class 
                     placeholder="${cardDiv.querySelector(".description").innerText}"
                     class="desc-edit"/><br>
 
-                   
                     <input type="submit" name="submit"
                     value="Update"
                     class="submit-button"/>
@@ -111,8 +89,7 @@ class Dinosaur{    //creating dino for the frontend object  // Javascript Class 
               
                     <br><br><br>
                 `      
-                // console.log(">>>>>>>", dinoToEditForm) 
-
+                // prevent to keep append edit form 
                 cardDiv.append(dinoToEditForm)
                 cardDiv.querySelector(".edit-btn").disabled = true
                 const notEdit = dinoToEditForm.querySelector(".close-button-editform")
@@ -122,20 +99,18 @@ class Dinosaur{    //creating dino for the frontend object  // Javascript Class 
                 })
 
 
-                dinoToEditForm.addEventListener("click", (event) => {
-                    event.preventDefault();
+                dinoToEditForm.addEventListener("click", (event) => { event.preventDefault();
                     if(event.target.matches(".submit-button")) {
                         let editedName = dinoToEditForm.querySelector(".name-edit").value
                         let editedImage = dinoToEditForm.querySelector(".image-edit").value
                         let editedEra = dinoToEditForm.querySelector(".era-edit").value
                             console.log("yoyo", editedEra)
-                        
                         let editedHeight = dinoToEditForm.querySelector(".height-edit").value
                         let editedSize = dinoToEditForm.querySelector(".size-edit").value
                         let editedWeight = dinoToEditForm.querySelector(".weight-edit").value
                         let editedDescription = dinoToEditForm.querySelector(".desc-edit").value
 
-                        const dinoObject = {
+                        const editedDinoObject = {
                             name: editedName,
                             image: editedImage,
                             mezosoic_era_id: editedEra,
@@ -146,26 +121,29 @@ class Dinosaur{    //creating dino for the frontend object  // Javascript Class 
                         }
 
                         const id = e.target.dataset.id
-                        fetch(`${API.ALL_DINOSAURS_URL}/${id}`, {
+                        fetch(`${API.ALL_DINOSAURS_URL}/${id}`, {  // this url ok? not mezosoic era url??
+                        // const id = e.target.dataset.id
+                        // console.log(editedEra)
+                        // fetch(`${API.MESOZOIC_ERA_URL}/${editedEra}`, {  // this url ok? not mezosoic era url??
                             method: "PATCH",
                             headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify(dinoObject)
+                            body: JSON.stringify(editedDinoObject)
                         })
                         .then(resp => resp.json())
                         .then(editedDino => { console.log(editedDino)
 
                             let eraName   
-                            console.log(eraName)
+                            // console.log(eraName)
                             if (editedDino.mezosoic_era_id == 1 ) {eraName = "Triassic"}
                             else if (editedDino.mezosoic_era_id  == 2) {eraName = "Jurassic"}
                             else if (editedDino.mezosoic_era_id  == 3) {eraName = "Cretaceous"}
-                            console.log(eraName)
+                            // console.log(eraName)
 
                             dinoToUpdate.querySelector("h2").innerText = editedDino.name
                             dinoToUpdate.querySelector("h3").innerText = editedDino.name
                             dinoToUpdate.querySelector("img").src = editedDino.image
                             dinoToUpdate.querySelector(".period").innerText = eraName
-                            console.log("showme", editedDino.eraName)
+                            // console.log("showme", eraName)
                             dinoToUpdate.querySelector(".height").innerText = editedDino.height
                             dinoToUpdate.querySelector(".size").innerText = editedDino.size
                             dinoToUpdate.querySelector(".weight").innerText = editedDino.weight
@@ -179,10 +157,9 @@ class Dinosaur{    //creating dino for the frontend object  // Javascript Class 
         })
     }
  
-
     
     makeACard = () =>{ //console.log(this)
-        // get MesozoicEra attribute(in this case period) like MesozoicEra.period //
+
         let eraName 
             if (this.mezosoic_era_id == 1 ) {eraName = "Triassic"}
             else if (this.mezosoic_era_id == 2) {eraName = "Jurassic"}
@@ -218,20 +195,22 @@ class Dinosaur{    //creating dino for the frontend object  // Javascript Class 
         `
     }  //makeACard end
    
-// Delete a Dinosaur ####
-    deleteDino(e) {
-        const id = e.target.dataset.id
-        const byeDino = document.getElementById(id)
-            // fetch(`http://localhost:3000/dinosaurs/${id}`, {
-            fetch(`${API.ALL_DINOSAURS_URL}/${id}`, {
-                method: "DELETE",
-                headers: { "Content-Type": "application/json" }
-            })
-            .then(response => response.json())
-            .then( 
-                byeDino.remove() //or e.target.closest(".flip-card").remove()
-                )
-    }
+
+
+// // Delete a Dinosaur ####
+//     deleteDino(e) {
+//         const id = e.target.dataset.id
+//         const byeDino = document.getElementById(id)
+//             // fetch(`http://localhost:3000/dinosaurs/${id}`, {
+//             fetch(`${API.ALL_DINOSAURS_URL}/${id}`, {
+//                 method: "DELETE",
+//                 headers: { "Content-Type": "application/json" }
+//             })
+//             .then(response => response.json())
+//             .then( 
+//                 byeDino.remove() //or e.target.closest(".flip-card").remove()
+//                 )
+//     }
 
 
    
