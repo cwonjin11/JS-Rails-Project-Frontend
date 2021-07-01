@@ -1,11 +1,9 @@
 
 class MezosoicEra{
 
-    
-    constructor(id, period){
+    constructor({id, period}){
         this.id = id,
-        this.period = period,
-        this.renderMezosoicEra()   // actually show Eras on the web page   // render the instance to the page 
+        this.period = period
     }
 
 
@@ -16,8 +14,9 @@ class MezosoicEra{
         eraContainer.classList.add = "all-dinos-rocks"
         eraContainer.innerHTML += this.eraHTML()
         eraHolder.appendChild(eraContainer)
-        eraContainer.addEventListener("click", e => { console.log("beep", e.target) 
-            if (e.target.className === "category-button")this.showDinosByEraId(e)
+        eraContainer.addEventListener("click", e => { //console.log("beep", e.target) 
+            if (e.target.className === "category-button") 
+                this.showDinosByEraId(e)
         })
     }
 
@@ -30,34 +29,73 @@ class MezosoicEra{
     }
 
 
-    // fetching era including dinosaurs
-    showDinosByEraId(e) {   
-        let id = e.target.dataset.id         // find the id from the dataset = e.target.dataset.id
-        // ##fetching dinos by era
-        fetch(`http://localhost:3000/mezosoic_eras/${id}/dinosaurs`)
+    showDinosByEraId(e) {  
+        let id = e.target.dataset.id  
+        fetch(`http://localhost:3000/mezosoic_eras/${id}/dinosaurs`)                            //Using nested JSON version
         .then(resp => resp.json())
-        .then(dinosaurs => { console.log ("fetched Dinos by each period", dinosaurs)
-        
+        .then(dinosaurs => { //console.log ("fetched Dinos by each period", dinosaurs)
         const collectionDiv = document.querySelector("#dino-collection")
         collectionDiv.innerHTML = ""   // make other eras blank
-        
-        dinosaurs.sort((a, b) => {
-            let nameA = a.name.toUpperCase();
-            let nameB = b.name.toUpperCase();
-              if (nameA < nameB) {
-              return -1;
-            }
-            if (nameA > nameB) {
-              return 1;
-            }
-          }).forEach( dinosaur=> {
-            const newDinosaur = new Dinosaur(dinosaur)
-            newDinosaur.renderDinosaur(dinosaur)
-           
+            dinosaurs.sort((a, b) => {
+                let nameA = a.name.toUpperCase();
+                let nameB = b.name.toUpperCase();
+                if (nameA < nameB) {
+                  return -1
+                }                                                      
+                if (nameA > nameB) {
+                  return 1
+                }
+              }).forEach( dinosaur => { 
+                const newDinosaur = new Dinosaur(dinosaur)
+                newDinosaur.renderDinosaur(dinosaur)
             })
         })
     }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // console.log("dinosaurs array for each mezosoic era",this.dinosaurs)                                // add <this> from orginal  //Using nested JSON version
+        // .sort((a, b) => {             
+        //     let nameA = a.name.toUpperCase();
+        //     let nameB = b.name.toUpperCase();
+        //       if (nameA < nameB) {                        //Uncommnet to sort dinosaurs in alpha order
+        //       return -1;
+        //     }
+        //     if (nameA > nameB) {
+        //       return 1;
+        //     }
+        //   })
+
+
+
 
 
 
