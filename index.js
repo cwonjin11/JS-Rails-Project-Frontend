@@ -1,7 +1,11 @@
 
-document.addEventListener("click", (event) => { console.log("ʘ CLICKED ʘ", event.target) }); 
+document.addEventListener("click", (event) => { console.log("ʘ CLICKED ʘ", event.target) 
+
+})
 
 
+// we are adding an event listner to the document and listening for the DOMContentLoaded event. 
+//When that event is fired, the anonymous function passed to addEventListener will be invoked.
 document.addEventListener("DOMContentLoaded", () => { 
    API.addEras()           //   First view of web page. Showing all Eras  
         //   Showing all Dinosaurs 
@@ -9,9 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
     mouseOverEvent()        // Header Color changes for fun
     getAllDinos()           // by clicking all dinosaurs, I can get all dinosaurs back again
     hideSeekForm()          // make the dino creation form appeared or disappeared. 
+    searchFunction()
 
-
-    
 });   //ENd "DOMContentLoaded"
 
 
@@ -22,6 +25,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+
+
+searchFunction =()=> {
+    const charactersList = document.getElementById('charactersList');
+    const searchBar = document.getElementById('searchBar');
+    let dinoCharacters = [];
+
+    
+    searchBar.addEventListener('keyup', (e) => { 
+        const searchString = e.target.value.toLowerCase();
+        const filteredDinosaurs = dinoCharacters.filter(dinosaur => {
+            return dinosaur.name.toLowerCase().includes(searchString)
+        })
+        console.log("filteredDinosaurs", filteredDinosaurs)
+        if (searchString != ""){
+            displayDinosaurs(filteredDinosaurs);
+        } else { 
+            charactersList.innerHTML = ""
+        }
+
+    });
+
+    const loadDinos = async () => {
+        const res = await fetch('http://localhost:3000/dinosaurs')
+        dinoCharacters = await res.json()
+        }
+
+    const displayDinosaurs = (dinosaurs) => {
+        const htmlString = dinosaurs.map((dinosaur) => {
+                return `
+                    <li class="search-dinosaur">
+                        <p stle="text:boldl;">${dinosaur.name}</p>
+                        <p style="color:green;">${dinosaur.mezosoic_era.period}</p>
+                        <img class="small-pic" src="${dinosaur.image}"></img>
+                    </li>
+                `
+            }).join('');
+        charactersList.innerHTML = htmlString;
+    };
+
+    loadDinos();
+}
 
 
 
@@ -51,6 +96,9 @@ hideSeekForm =() => {
                 }
             });
         document.querySelector('.container').addEventListener('submit', API.newDinoForm)           // submit form 
+        // Submit event is fired when a form is submitted.
+        // Note that submit is fired only on the form element, not the button or submit input. (Forms are submitted, not buttons.)
+
         // We only need input values after someone hit submit.
         // "after this form is submitted, it is calling form handler"
         //API.newDinoForm is the form handler to grab all of the values for my inputs
@@ -107,11 +155,45 @@ mouseOverEvent=() => {
 
 
 
+// // const getDinoList = document.querySelecor("")
+// fetch(API.ALL_DINOSAURS_URL)                            
+// .then(response => response.json()) 
+// .then(dinosaurArray => { console.log(">>", dinosaurArray)
+
+// dinosaurArray.forEach(dinosaur => { 
+//     console.log(dinosaur.name)
+  
+//   })
+ 
+//   // createDinosaursList
+// })
+
+// //     createMountainCards(mountains)
+// //   filteredMountains = mountains
+// const searchBar = document.querySelector("#searchBar")
+// searchBar.addEventListener("input", event => {
+// event.preventDefault()
+// const term = event.target.value.toLowerCase()
+// let searchResult = 
+
+// })
+// // }); 
+// createDinosaursList = () => {
 
 
 
 
 
+
+
+
+// if (event.target.className === "all-dinos") {
+//     // console.log("aaa")
+//     const back = document.querySelector('body')
+//     back.style.backgroundColor = "red";
+//     }
+//     else {const back = document.querySelector('body')
+//     back.style.backgroundColor = "blue";}
 
 
 
