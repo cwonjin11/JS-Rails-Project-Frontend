@@ -389,6 +389,24 @@ form {
     /* display: block; */
 
   }
+  .small-pic {
+    width: 120px;
+    height: 100px;
+}
+
+#searchBar{
+    background-color: #fdc52c;
+    height:30px;
+    width: 200px;
+
+}
+
+.search-dinosaur{
+    background-color: rgb(235, 199, 0); 
+    display: inline-grid;
+    
+
+}
 /*   
   .card {
     text-align: center;
