@@ -8,12 +8,12 @@ document.addEventListener("click", (event) => { console.log("ʘ CLICKED ʘ", eve
 //When that event is fired, the anonymous function passed to addEventListener will be invoked.
 document.addEventListener("DOMContentLoaded", () => { 
    API.addEras()           //   First view of web page. Showing all Eras  
-        //   Showing all Dinosaurs 
+//    API.addDinosaurs()     //   Showing all Dinosaurs 
 
     mouseOverEvent()        // Header Color changes for fun
     getAllDinos()           // by clicking all dinosaurs, I can get all dinosaurs back again
     hideSeekForm()          // make the dino creation form appeared or disappeared. 
-    searchFunction()
+    searchFunction()        // search dinosaur by name 
 
 });   //ENd "DOMContentLoaded"
 
@@ -22,50 +22,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
-
-
-
-
-searchFunction =()=> {
-    const charactersList = document.getElementById('charactersList');
+searchFunction = () => {
+    // const dinosaurssList = document.getElementById('dinosaurssList');
     const searchBar = document.getElementById('searchBar');
     let dinoCharacters = [];
 
+    // const loadDinos = async () => {
+    //     const res = await fetch('http://localhost:3000/dinosaurs')
+    //     dinoCharacters = await res.json()
+    //     }
+
+    // loadDinos();
+
+    const loadDinos = () =>{
+        fetch('http://localhost:3000/dinosaurs')
+        .then(response => response.json())
+        .then( dinosaurs => {
+            dinoCharacters = dinosaurs
+            // console.log(dinoCharacters)
+        })
+    }
+
+    loadDinos();
+
     
     searchBar.addEventListener('keyup', (e) => { 
+        const collectionDiv = document.querySelector("#dino-collection")
         const searchString = e.target.value.toLowerCase();
         const filteredDinosaurs = dinoCharacters.filter(dinosaur => {
             return dinosaur.name.toLowerCase().includes(searchString)
         })
-        console.log("filteredDinosaurs", filteredDinosaurs)
+        // console.log("filteredDinosaurs", filteredDinosaurs)
         if (searchString != ""){
-            displayDinosaurs(filteredDinosaurs);
+            collectionDiv.innerHTML = ""
+            filteredDinosaurs.forEach(filteredDinosaur => { //console.log(">>>", filteredDinosaurs)
+            const searchedDinosaur = new Dinosaur(filteredDinosaur)        
+            searchedDinosaur.renderDinosaur(filteredDinosaur)
+            })
         } else { 
-            charactersList.innerHTML = ""
+            collectionDiv.innerHTML = ""
+            API.addDinosaurs()
         }
-
     });
-
-    const loadDinos = async () => {
-        const res = await fetch('http://localhost:3000/dinosaurs')
-        dinoCharacters = await res.json()
-        }
-
-    const displayDinosaurs = (dinosaurs) => {
-        const htmlString = dinosaurs.map((dinosaur) => {
-                return `
-                    <li class="search-dinosaur">
-                        <p stle="text:boldl;">${dinosaur.name}</p>
-                        <p style="color:green;">${dinosaur.mezosoic_era.period}</p>
-                        <img class="small-pic" src="${dinosaur.image}"></img>
-                    </li>
-                `
-            }).join('');
-        charactersList.innerHTML = htmlString;
-    };
-
-    loadDinos();
 }
 
 
@@ -108,8 +106,6 @@ hideSeekForm =() => {
 
 
 // ############## get all dinos by clicking <All Dinos> button  ##################
-// function getAllDinos () {
-    //changed to arrow function
 getAllDinos = () => { 
     const getAllDinos = document.querySelector('.all-dinos') 
     getAllDinos.addEventListener("click", () => {
@@ -123,7 +119,6 @@ getAllDinos = () => {
 
 
 // ########################### mouseOverEvent #################################### 
-        // test eventlistener other then "click" event, in this case mouseover. 
 mouseOverEvent=() => {
     //title text color change effect
     const dinosaurColors = ["green", "lightgreen", "yellow", "yellowgreen",  "brown", "red", "gold"]
@@ -139,6 +134,34 @@ mouseOverEvent=() => {
         head.addEventListener("mouseover", ()=> changeColor(head))
     }
 // ############################################################################### 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
