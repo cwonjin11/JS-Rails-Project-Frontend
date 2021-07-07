@@ -14,7 +14,6 @@ class Dinosaur{
     }  
 
 
-
 // ################## set renderDino #########################
     renderDinosaur = (dinosaur) => { //console.log(dinosaur)
         const cardDiv = document.createElement("div")
@@ -23,9 +22,18 @@ class Dinosaur{
         cardDiv.id = dinosaur.id           
         cardDiv.innerHTML = this.makeACard()  
         document.querySelector("#dino-collection").append(cardDiv)
-
+        
         cardDiv.addEventListener('click', e => {
-            if (e.target.matches(".delete-btn")) API.deleteDino(e)
+            if (e.target.matches(".delete-btn")) {API.deleteDino(e)}
+
+            if (e.target.matches(".like-btn")) { //{console.log(">>>>", e.target)
+                const likesInteger = e.target.closest(".flip-card").querySelector('#incrementText')
+                const likeCount = parseInt(likesInteger.textContent) 
+                const newLikes = likeCount + 1
+                likesInteger.innerText = newLikes;
+                // const id = e.target.dataset.id
+            }
+
             if (e.target.matches(".edit-btn")) { 
                 const dinoToUpdate = e.target.closest(".flip-card")
                 const dinoToEditForm = document.createElement('form')
@@ -104,7 +112,7 @@ class Dinosaur{
                         let editedName = dinoToEditForm.querySelector(".name-edit").value
                         let editedImage = dinoToEditForm.querySelector(".image-edit").value
                         let editedEra = dinoToEditForm.querySelector(".era-edit").value
-                            console.log("yoyo", editedEra)
+                            //console.log("yoyo", editedEra)
                         let editedHeight = dinoToEditForm.querySelector(".height-edit").value
                         let editedSize = dinoToEditForm.querySelector(".size-edit").value
                         let editedWeight = dinoToEditForm.querySelector(".weight-edit").value
@@ -121,10 +129,7 @@ class Dinosaur{
                         }
 
                         const id = e.target.dataset.id
-                        fetch(`${API.ALL_DINOSAURS_URL}/${id}`, {  // this url ok? not mezosoic era url??
-                        // const id = e.target.dataset.id
-                        // console.log(editedEra)
-                        // fetch(`${API.MESOZOIC_ERA_URL}/${editedEra}`, {  // this url ok? not mezosoic era url??
+                        fetch(`${API.ALL_DINOSAURS_URL}/${id}`, { 
                             method: "PATCH",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify(editedDinoObject)
@@ -153,9 +158,9 @@ class Dinosaur{
                         cardDiv.querySelector(".edit-btn").disabled = false
                     }
                 })
-            } //this.editDino(e)
+            } 
         })
-    }
+    } // end renderdionsaur
  
     
     makeACard = () =>{ //console.log(this)
@@ -167,11 +172,11 @@ class Dinosaur{
 
         return `
         <!-- <div class="flip-card"> -->
-          
                 <div class="flip-card-inner">
                     <div class="flip-card-front" >
                         <img src=${this.image} class="dino-icon" />
                         <h2>${this.name}</h2>
+                       
                     </div>
 
                     <div class="flip-card-back" >
@@ -183,40 +188,17 @@ class Dinosaur{
                         Length : <p style="display:inline" class="size">${this.size}</p><br>
                         Weight : <p style="display:inline" class="weight">${this.weight}</p><br>
                         Description :  <p style="display:inline" class="description">${this.desc}</p>
+                        <div>
+                        <p data-id="${this.id}" id="incrementText" style="color:pink;font-size:18px" > 0 </p>
+                        <button data-id="${this.id}" class="like-btn">❤️</button> 
                         <button data-id="${this.id}" class="edit-btn"> Edit</button>
                         <button data-id="${this.id}" class="delete-btn"> Delete</button>  
-                  
+                        </div>
                     </div>
                 </div>
-                
-              <!--  </div>--> 
-        
-                
+        <!--  </div>-->  
         `
     }  //makeACard end
-   
-
-
-// // Delete a Dinosaur ####
-//     deleteDino(e) {
-//         const id = e.target.dataset.id
-//         const byeDino = document.getElementById(id)
-//             // fetch(`http://localhost:3000/dinosaurs/${id}`, {
-//             fetch(`${API.ALL_DINOSAURS_URL}/${id}`, {
-//                 method: "DELETE",
-//                 headers: { "Content-Type": "application/json" }
-//             })
-//             .then(response => response.json())
-//             .then( 
-//                 byeDino.remove() //or e.target.closest(".flip-card").remove()
-//                 )
-//     }
-
-
-   
-
-    
-
 }  // #########Class end
 
 
@@ -240,7 +222,20 @@ class Dinosaur{
 
 
 
-
+// // Delete a Dinosaur ####
+//     deleteDino(e) {
+//         const id = e.target.dataset.id
+//         const byeDino = document.getElementById(id)
+//             // fetch(`http://localhost:3000/dinosaurs/${id}`, {
+//             fetch(`${API.ALL_DINOSAURS_URL}/${id}`, {
+//                 method: "DELETE",
+//                 headers: { "Content-Type": "application/json" }
+//             })
+//             .then(response => response.json())
+//             .then( 
+//                 byeDino.remove() //or e.target.closest(".flip-card").remove()
+//                 )
+//     }
 
 
 

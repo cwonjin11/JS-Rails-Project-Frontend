@@ -7,7 +7,7 @@ class API {
     static addDinosaurs () {
       fetch(this.ALL_DINOSAURS_URL)                               
       .then(response => response.json()) 
-      .then(dinosaurArray => { console.log(">>", dinosaurArray)
+      .then(dinosaurArray => { //console.log(">>", dinosaurArray)
         // console.log("a")    // "asynchronous" example
         dinosaurArray
         .sort((a, b) => {                                             //sort by name in alphabetical order
@@ -37,7 +37,7 @@ class API {
     static addEras() {
       fetch(this.MESOZOIC_ERA_URL)
       .then(resp => resp.json())
-      .then(eraArray => { console.log("all eras in array", eraArray)
+      .then(eraArray => { //console.log("all eras in array", eraArray)
           eraArray.forEach(era => { //console.log("era.dinosaurs", era.dinosaurs)          
             const newMezosoicEra = new MezosoicEra(era)              // 'era' from the backend to MezosoicEra, the front end.
             newMezosoicEra.renderMezosoicEra(era)                    //include: :dinosaurs from nested json
@@ -53,7 +53,7 @@ class API {
 
  // The form handler ;; Add dinos & Post Fetch   
     static newDinoForm(e) { e.preventDefault();
-      console.log("Submit default is refreshing th page. 'e.PreventDefault();' will prevent refreshing the page and show this message", e)
+      // console.log("Submit default is refreshing the page. 'e.PreventDefault();' will prevent refreshing the page and show this message", e)
       // debugger
       let data = {   // this data will send to my api 
         'name': e.target.name.value,
@@ -82,8 +82,9 @@ class API {
                 const newDinosaur = new Dinosaur(dinosaur)
                 newDinosaur.renderDinosaur(dinosaur)
                 document.querySelector('.add-dino-form').reset()   //reset the form against preventDefault
-                alert("Dinosaur has been added")
-                });
+                alert(`Dinosaur : "${data.name}" has been added`)
+                document.querySelector('.container').style.display = "none"
+                })
             }; //close if conditions. 
     }; // close preventDefault
 
@@ -92,15 +93,12 @@ class API {
     static  deleteDino(e) {
       const id = e.target.dataset.id
       const byeDino = document.getElementById(id)
-          // fetch(`http://localhost:3000/dinosaurs/${id}`, {
           fetch(`${this.ALL_DINOSAURS_URL}/${id}`, {
               method: "DELETE",
               headers: { "Content-Type": "application/json" }
           })
           .then(response => response.json())
-          .then( 
-              byeDino.remove() //or e.target.closest(".flip-card").remove()
-              )
+          .then(byeDino.remove())
     }
 
     

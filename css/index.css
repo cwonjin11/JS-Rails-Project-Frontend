@@ -17,7 +17,6 @@ body {
     opacity: .9;
     position: relative;
     background-color: #fdc52c;
-    /* border: none; */
     border-radius: 5px;
     height: 3rem;
     width: max-content;
@@ -51,7 +50,6 @@ body {
     }
 
  .category-button:hover { 
-    /* display: inline-block; */
     opacity: .7;
     background-color: whitesmoke;
     border: #0f7c00 solid 1px;
@@ -76,29 +74,6 @@ body {
     position: relative; 
     height: 30px;
     padding: 1px 6px;
-    /* text-align: center;
-    box-sizing: border-box;
-    padding: 1px 6px;
-    border-width: 2px;
-    border-style: outset;
-    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
-    border-image: initial; */
-
-        /* appearance: auto;
-        user-select: none;
-        white-space: pre;
-        align-items: flex-start;
-        text-align: center;
-        cursor: default;
-        color: -internal-light-dark(black, white);
-        background-color: -internal-light-dark(rgb(239, 239, 239), rgb(59, 59, 59));
-        box-sizing: border-box;
-        padding: 1px 6px;
-        border-width: 2px;
-        border-style: outset;
-        border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
-        border-image: initial; */
-
 }
 
 button {
@@ -147,8 +122,33 @@ button:hover {
         background-color: whitesmoke;
         border: #0f7c00 solid 1px;
         color: #0269c9;}
-        
 
+    .like-btn{
+        height: 2rem;
+        background-color: #003152;
+        color: rgb(255, 219, 253);
+        position: absolute;
+        bottom: 8px;
+        right: 240px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        position: fixed;
+        }
+
+    .like-btn:hover {
+        background-color: rgb(255, 214, 248);
+        border: rgb(255, 0, 0) 1px;
+        color: rgb(235, 158, 231);
+        opacity: .8;
+    }
+        
+     #incrementText {
+        color: white;
+        position: absolute;
+        bottom: 8px;
+        right: 220px;
+     }   
 .opacity {
     width: 80%; 
     background-color: rgba(3, 172, 240, 0.5);
@@ -161,59 +161,58 @@ button:hover {
 h1 {
     font-size: 50px;
     font-weight: bold;
-    color: #004b26;
+    color: Gold;
     text-shadow: 1px 2px rgb(87, 105, 124);
-    
-    /* opacity: .5; */
-  }
+    /* border:black; */
+}
+
 p {
 line-height: 16px;
 margin: 8px 0;
 }
-  #project-header
-  {
+
+#project-header {
     display: flex;
     justify-content: center;
     opacity: .8;
     height: 300px;
     padding: 1rem;
-  }
+}
 
 
 
-  #era-container > div { 
+#era-container > div { 
     display: inline-block;
-  }
+}
 
 
   
-  .dino-icon {
+.dino-icon {
     justify-self: center;
     height: 15rem;
     width: 100%;
-  }
+}
   
 
-  .container {
+.container {
     border: 3px solid;
     border-radius: 5px;
     padding: 1rem;
     display: none;
     background: #00912ba6;
-    /* opacity: .8; */
     max-width: 540px;
     margin-left: auto;
     margin-right: auto;
-  }
+}
   
-  .add-dino-form {
+.add-dino-form {
     width: 100%;
     height: 100%;
     background-color: #00912ba6;
     opacity: .8;
-  } 
+} 
   
-  .submit {
+.submit {
     position: relative;
     background-color: #fdc52c;
     border-radius: 5px;
@@ -224,22 +223,18 @@ margin: 8px 0;
     justify-self: center;
     font-family: monospace;
     margin: 3px;
-  }
+}
   
-  .submit:hover {
+.submit:hover {
     background-color: whitesmoke;
     border: green solid 1px;
     color: green;
-  }
-  .close-button {
+}
+
+.close-button {
     margin-top: 1px;
     margin-right: 2px;
     position:absolute;
-    /* top:0;
-    right:0; */
-    /* position: relative; */
-    /* bottom: 8px; */
-    /* left: 100px; */
     background-color: #fdc52c;
     border-radius: 5px;
     height: 2.6rem;
@@ -249,75 +244,77 @@ margin: 8px 0;
     justify-self: center;
     font-family: monospace;
     margin: 3px;
-  }
+}
   
-  .close-button:hover {
+.close-button:hover {
     background-color: whitesmoke;
     border: green solid 1px;
     color: green;
-  }
+}
   
   
-  .input-text {
+.input-text {
     /* background-color: rgb(187, 255, 0); */
     border-radius: 5px;
     height: 2rem;
     width: 70%;
     font-size: 15px;
     font-family: monospace;
-    margin: 4px;
-    
-  }
+    margin: 4px; 
+}
 
-  .add-dino-form > select{
+.add-dino-form > select{
     /* background-color: rgb(187, 255, 0); */
     border-radius: 5px;
     height: 2.5rem;
     width: 71%;
     margin: 4px;
-  }
+}
   
 
   
 form {
     background-color: white;
     display: block;
-
 }
 
 
+#scrollToTopBtn {
+    background-color: black;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 48px;
+    width: 48px;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+}
+
+
+
+
+
+
 /* flip card */
-  /* #dinosaur-edit {
-        background-color: rgb(236, 128, 128);
-    } */
-  /* #dino-edit-form{
-        background-color: rgb(246, 250, 0);
-    } */
-    
-   /* .card {
-       display: -ms-inline-grid
-   }  */
 
   .flip-card {
     background-color: transparent;
     width: 300px;
     height: 300px;
     padding: .6rem .4rem;
-    display: inline-block;
-    /* use overflow to make scrollable */
-    /* overflow: auto; */              
+    display: inline-block;          
   }
   
   .flip-card-inner {
-    /* position: absolute; */
     width: 100%;
     height: 100%;
     text-align: center;
     transition: transform 0.6s;
     transform-style: preserve-3d;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    /* overflow: auto; */
-    /* perspective: 40rem; */
   }
   
   .flip-card:hover .flip-card-inner {
@@ -330,10 +327,6 @@ form {
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    /* display: flex; */
-    /* backface-visibility: hidden; */
-    /* min-width: 100%; */
-    /* display: flex; */
   }
   
   .flip-card-front {
@@ -349,17 +342,60 @@ form {
     transform: rotateY(180deg);
     border: white solid 1px;
     text-align: center;
-    
     height: relative;
-    /* display: flex; */
     backface-visibility: hidden;
-    min-width: 100%;
-    /* overflow: auto; */
-    /* position: absolute; */
-    
-    
+    min-width: 100%;  
+
   }
   /* end flip card */
+
+   
+  #dino-collection {
+    margin: 3rem;
+  }
+
+#searchBar{
+    background-color: #fdc52c;
+    height:30px;
+    width: 200px;
+    opacity: .8;
+}
+
+
+
+
+
+#dinosaurTest {
+    opacity: .8;
+    background-color: #ddd;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    width:30%;
+    
+}
+
+
+
+#checkBox{
+    background-color:#ddd;
+}
+
+.hidden{
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* .form-to-edit{
     position: absolute;
@@ -383,30 +419,27 @@ form {
     width: auto;
   } */
 
-   
-  #dino-collection {
-    margin: 3rem;
-    /* display: block; */
 
-  }
-  .small-pic {
+
+
+
+
+
+
+
+  /* .small-pic {
     width: 120px;
     height: 100px;
-}
+} */
 
-#searchBar{
-    background-color: #fdc52c;
-    height:30px;
-    width: 200px;
 
-}
 
-.search-dinosaur{
+/* .search-dinosaur{
     background-color: rgb(235, 199, 0); 
     display: inline-grid;
     
 
-}
+} */
 /*   
   .card {
     text-align: center;

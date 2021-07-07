@@ -16,10 +16,25 @@ class MezosoicEra{
         eraHolder.appendChild(eraContainer)
         eraContainer.addEventListener("click", e => { //console.log("beep", e.target) 
             if (e.target.className === "category-button") 
-                this.showDinosByEraId(e)
+               this.showDinosByEraId(e)
         })
-    }
+        // category button background color change effect
+        const dinosaurColors = ["MediumSpringGreen", "lightgreen", "yellow", "yellowgreen", "Aquamarine", "LightCoral", "SkyBlue"]
+        let index = 0
+        const maxIndex = dinosaurColors.length
+        const buttons = eraContainer.querySelectorAll('button')
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener('mouseover', () => {
+                buttons[i].style.backgroundColor = dinosaurColors[index++]
+                // buttons[i].innerHTML = dinosaurColors[index++]
+                if(index == maxIndex){
+                    index = 0;
+                }
+            })
+        }
+        
 
+    }
 
     eraHTML(){
         return `
@@ -31,7 +46,7 @@ class MezosoicEra{
 
     showDinosByEraId(e) {  
         let id = e.target.dataset.id  
-        fetch(`http://localhost:3000/mezosoic_eras/${id}/dinosaurs`)                            //Using nested JSON version
+        fetch(`http://localhost:3000/mezosoic_eras/${id}/dinosaurs`)                     
         .then(resp => resp.json())
         .then(dinosaurs => { //console.log ("fetched Dinos by each period", dinosaurs)
         const collectionDiv = document.querySelector("#dino-collection")
