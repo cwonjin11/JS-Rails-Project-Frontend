@@ -1,50 +1,84 @@
 
-document.addEventListener("click", (event) => { console.log("ʘ CLICKED ʘ", event.target) 
-
-})
-
+// document.addEventListener("click", (event) => { console.log("ʘ CLICKED ʘ", event.target) })
 
 // we are adding an event listner to the document and listening for the DOMContentLoaded event. 
 //When that event is fired, the anonymous function passed to addEventListener will be invoked.
-document.addEventListener("DOMContentLoaded", () => { 
-   API.addEras()           //   First view of web page. Showing all Eras  
-//    API.addDinosaurs()     //   Showing all Dinosaurs 
-
-    mouseOverEvent()        // Header Color changes for fun
-    getAllDinos()           // by clicking all dinosaurs, I can get all dinosaurs back again
-    hideSeekForm()          // make the dino creation form appeared or disappeared. 
-    searchFunction()        // search dinosaur by name 
-
-});   //ENd "DOMContentLoaded"
 
 
 
+document.addEventListener("DOMContentLoaded", () => {
+    API.addEras()                               //   First view of web page. Showing all Eras  
+    addColorEffectEvent()                       // Header Color changes for fun
+    getAllDinos()                               // by clicking all dinosaurs, I can get all dinosaurs back again
+    hideSeekForm()                              // make the dino creation form appeared or disappeared. 
+    searchFunction()                            // search dinosaur by name 
+    scrollToTop()                               // scroll from bottom to top button
 
 
+    // testFunction()
 
+    // const checkBoxTest = document.getElementById("checkBox");
+    // checkBoxTest.addEventListener("click", (e)=>{
+
+    //     //console.log("e.target", e.target)
+    //     e.preventDefault()
+    // })
+   
+
+    // document.getElementById("appTitle").classList.add("hidden")
+    // document.getElementById("appTitle").classList.remove("hidden")
+    
+    
+    // document.getElementById("era-container").innerHTML = ""   
+    
+
+
+}) // END DOMContentLoaded
+
+
+testFunction = () => {
+    const testButton = document.getElementById("test")
+    testButton.addEventListener("click", ()=> {
+       const collectionDiv =  document.querySelector("#dino-collection")
+        collectionDiv.innerHTML = ""
+        fetchDinosByName();
+    })
+}
+
+fetchDinosByName = () => {
+    fetch("http://localhost:3000/dinosaurs")                               
+    .then(response => response.json()) 
+    .then(dinosaurArray => { console.log(dinosaurArray.length)
+    const html = dinosaurArray.map(dinosaur => { //console.log(dinosaur.name)
+                return `
+                <div id=dinosaurTest>
+                    <p><img src="${dinosaur.image}" alt="${dinosaur.name}" style="width:150px;height:150px;" /></p>
+                    <p>name: ${dinosaur.name}</p>
+                    <p>diets: ${dinosaur.diets}</p>
+                    <p>diets: ${dinosaur.diets}</p>
+                </div>
+                `
+        }).join("")
+        // document.querySelector("#testDiv").insertAdjacentHTML("afterbegin", html)
+        document.querySelector("#testDiv").innerHTML = html
+    })
+}
+
+
+// ##################### Search Bar ##############################################
 searchFunction = () => {
-    // const dinosaurssList = document.getElementById('dinosaurssList');
     const searchBar = document.getElementById('searchBar');
     let dinoCharacters = [];
-
-    // const loadDinos = async () => {
-    //     const res = await fetch('http://localhost:3000/dinosaurs')
-    //     dinoCharacters = await res.json()
-    //     }
-
-    // loadDinos();
-
-    const loadDinos = () =>{
+    // console.log(dinoCharacters)
+    
+    const loadDinos = () => {
         fetch('http://localhost:3000/dinosaurs')
         .then(response => response.json())
         .then( dinosaurs => {
             dinoCharacters = dinosaurs
-            // console.log(dinoCharacters)
+            console.log("fetch all dinos", dinoCharacters)
         })
     }
-
-    loadDinos();
-
     
     searchBar.addEventListener('keyup', (e) => { 
         const collectionDiv = document.querySelector("#dino-collection")
@@ -52,9 +86,10 @@ searchFunction = () => {
         const filteredDinosaurs = dinoCharacters.filter(dinosaur => {
             return dinosaur.name.toLowerCase().includes(searchString)
         })
-        // console.log("filteredDinosaurs", filteredDinosaurs)
+        console.log("filteredDinosaurs", filteredDinosaurs)
         if (searchString != ""){
             collectionDiv.innerHTML = ""
+            loadDinos();
             filteredDinosaurs.forEach(filteredDinosaur => { //console.log(">>>", filteredDinosaurs)
             const searchedDinosaur = new Dinosaur(filteredDinosaur)        
             searchedDinosaur.renderDinosaur(filteredDinosaur)
@@ -65,10 +100,7 @@ searchFunction = () => {
         }
     });
 }
-
-
-
-
+// ############################################################################### 
 
 
 
@@ -108,6 +140,8 @@ hideSeekForm =() => {
 // ############## get all dinos by clicking <All Dinos> button  ##################
 getAllDinos = () => { 
     const getAllDinos = document.querySelector('.all-dinos') 
+
+
     getAllDinos.addEventListener("click", () => {
         const collectionDiv = document.querySelector("#dino-collection")
         collectionDiv.innerHTML = ""   // Hide dino-collection first. 
@@ -119,24 +153,69 @@ getAllDinos = () => {
 
 
 // ########################### mouseOverEvent #################################### 
-mouseOverEvent=() => {
+addColorEffectEvent=() => {
     //title text color change effect
-    const dinosaurColors = ["green", "lightgreen", "yellow", "yellowgreen",  "brown", "red", "gold"]
-        let index = 0
+    const dinosaurColors = ["MediumSpringGreen", "lightgreen", "yellow", "yellowgreen", "Aquamarine", "LightCoral", "SkyBlue"]
+    const scrollTopColors = [ "HotPink ", "DeepPink ", "PaleVioletRed", "MediumVioletRed", "Magenta", "black"]
+    
+    let index = 0
     const maxIndex = dinosaurColors.length
-    const changeColor = (title) => {
-        title.style.color = dinosaurColors[index++]
-        if(index == maxIndex){
-            index = 0;
+
+        const changeColor = (title) => {
+            title.style.color = dinosaurColors[index++]
+            if(index == maxIndex){
+                index = 0;
+            }
         }
-    }
-    const head = document.querySelector("h1")
-        head.addEventListener("mouseover", ()=> changeColor(head))
+        const changeBackgroundColor = (background) => {
+            background.style.backgroundColor = dinosaurColors[index++]
+            if(index == maxIndex){
+                index = 0;
+            }
+        }
+        const changeScrollTopBtnColor = (background) => {
+            background.style.backgroundColor = scrollTopColors[index++]
+            if(index == maxIndex){
+                index = 0;
+            }
+        }
+
+        const head = document.querySelector("h1")
+            head.addEventListener("mouseover", () => changeColor(head))
+            
+        // const headDiv = document.querySelector("#h1")
+        // const docBody = document.body
+        //     headDiv.addEventListener("click", ()=> changeBackgroundColor(docBody) )
+
+        // const categoryButtonText = document.getElementsByClassName("category-button")
+        // console.log(categoryButtonText)
+        //     categoryButtonText.addEventListener("mouseover", () => changeBackgroundColor(categoryButtonText))
+
+        const searchBar = document.querySelector('input[name="searchBar"]')
+            searchBar.addEventListener("mouseover", () => changeBackgroundColor(searchBar))
+
+        const allButton = document.querySelector('.all-dinos')
+            allButton.addEventListener("mouseover", () => changeBackgroundColor(allButton))
+
+        const scrollToTopBtn = document.querySelector('#scrollToTopBtn')
+            scrollToTopBtn.addEventListener("click", () => changeScrollTopBtnColor(scrollToTopBtn))
     }
 // ############################################################################### 
 
 
 
+scrollToTop = () => {
+    const scrollToTopBtn = document.getElementById("scrollToTopBtn")
+    const rootElement = document.documentElement
+    rootElement.scrollTo({top: 0, behavior: "smooth"})
+    scrollToTopBtn.addEventListener("click", (e) =>
+    scrollToTop(e)
+    )
+}
+
+
+
+ 
 
 
 
@@ -167,13 +246,12 @@ mouseOverEvent=() => {
 
 
 
+    // const loadDinos = async () => {
+    //     const res = await fetch('http://localhost:3000/dinosaurs')
+    //     dinoCharacters = await res.json()
+    //     }
 
-
-
-
-
-
-
+    // loadDinos();
 
 
 

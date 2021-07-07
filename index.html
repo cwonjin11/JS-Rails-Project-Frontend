@@ -19,26 +19,21 @@
     
 
     <body >
-            <h1  class="opacity" style="text-align:center"  > 🦕 DINOSAURS FLASH CARD 🦖  </h1>
- 
+            <div id="navi">
+            <h1 class="opacity" style="text-align:center" id="appTitle" > 🦕 Dinosaur Flashcard Maker 🦖  </h1>
+            </div>
+
         <!-- Search Bar-->
             <div id="searchWrapper" >
                 <input style="text-align:center"
                     type="text"
                     name="searchBar"
                     id="searchBar" 
-                    placeholder ="🦖search any dinosaurs🦕"
+                    placeholder ="🦖 SEARCH 🦕"
                 />
             </div>
-            <ul id="charactersList" style="text-align:center" ></ul>
+            <!--<ul id="dinosaurssList" style="text-align:center" ></ul>--> 
 
-
-        <!--  <div id="project-header" style="text-align:center">
-            <img
-            src="https://media.giphy.com/media/fnmsu2lTw3r1e/giphy.gif"
-            alt="class-project-header"
-            />
-            </div>   -->
 
         <p style="text-align:center"> <button id="new-dino-btn"> Let's Add a DINO!  🦖</button> 
         </p>
@@ -83,10 +78,35 @@
             </div>
         </div>
 
+
+
+        
+       <!-- <div id="checkBox">
+            
+            <input type="checkbox" id="scales" name="scales" unchecked>
+            <label for="scales">Scales</label>
+            <input type="checkbox" id="weight" name="weight" unchecked>
+            <label for="weight">Weight</label>
+        </div>
+
+       
+        <div>
+            <button id="test">🧪</button>
+            </div>
+       <div id="testDiv"></div>  -->
+
+
+
         <!-- display all dinosaurs -->
-        <div id="dino-collection" style="text-align:center"></div>
-        <!-- <script type="text/javascript" src="index.js"></script> -->
-        <!-- <script type="text/javascript" src="js/services/api_service.js"></script> -->
+        <div id="dino-collection" style="text-align:center">
+           
+        </div>
+        <footer>
+            <!-- Scroll to top button -->
+            <button id="scrollToTopBtn">☝️</button>
+        </footer>
+
     </body>
+
 
 </html>
