@@ -1,10 +1,6 @@
 
 // document.addEventListener("click", (event) => { console.log("ʘ CLICKED ʘ", event.target) })
 
-// we are adding an event listner to the document and listening for the DOMContentLoaded event. 
-//When that event is fired, the anonymous function passed to addEventListener will be invoked.
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
     API.addEras()                               //   First view of web page. Showing all Eras  
@@ -15,61 +11,45 @@ document.addEventListener("DOMContentLoaded", () => {
     scrollToTop()                               // scroll from bottom to top button
 
 
-    // testFunction()
 
-    // const checkBoxTest = document.getElementById("checkBox");
-    // checkBoxTest.addEventListener("click", (e)=>{
+    // #############live coding challenge####################################
+    // display any random dinosaur on the browser
+    const randomButton = document.getElementById("randomButton")
+    const testDiv = document.getElementById("testDiv")
+    console.log(randomButton)
+    randomButton.addEventListener("click", (e) => {
+        console.log(e.target)
+        fetch('http://localhost:3000/dinosaurs')
+        .then(response => response.json())
+        .then(dinosaurs => { 
+        const dinoArray = dinosaurs
+        console.log(dinoArray)
+       const result =  dinoArray[Math.floor(Math.random() * dinoArray.length)]
 
-    //     //console.log("e.target", e.target)
-    //     e.preventDefault()
-    // })
-   
+       console.log(result)
+       const collectionDiv = document.querySelector("#dino-collection")
+       // console.log(collectionDiv)
+       collectionDiv.innerHTML = ""
+       const newDinosaur = new Dinosaur(result) 
+       // console.log("newDinosaur", newDinosaur)  
+    //    debugger     
+       newDinosaur.renderDinosaur(result)
+        })
+    })
+    //##########################################################################
 
-    // document.getElementById("appTitle").classList.add("hidden")
-    // document.getElementById("appTitle").classList.remove("hidden")
     
-    
-    // document.getElementById("era-container").innerHTML = ""   
-    
-
-
 }) // END DOMContentLoaded
 
 
-testFunction = () => {
-    const testButton = document.getElementById("test")
-    testButton.addEventListener("click", ()=> {
-       const collectionDiv =  document.querySelector("#dino-collection")
-        collectionDiv.innerHTML = ""
-        fetchDinosByName();
-    })
-}
 
-fetchDinosByName = () => {
-    fetch("http://localhost:3000/dinosaurs")                               
-    .then(response => response.json()) 
-    .then(dinosaurArray => { console.log(dinosaurArray.length)
-    const html = dinosaurArray.map(dinosaur => { //console.log(dinosaur.name)
-                return `
-                <div id=dinosaurTest>
-                    <p><img src="${dinosaur.image}" alt="${dinosaur.name}" style="width:150px;height:150px;" /></p>
-                    <p>name: ${dinosaur.name}</p>
-                    <p>diets: ${dinosaur.diets}</p>
-                    <p>diets: ${dinosaur.diets}</p>
-                </div>
-                `
-        }).join("")
-        // document.querySelector("#testDiv").insertAdjacentHTML("afterbegin", html)
-        document.querySelector("#testDiv").innerHTML = html
-    })
-}
+
 
 
 // ##################### Search Bar ##############################################
 searchFunction = () => {
     const searchBar = document.getElementById('searchBar');
     let dinoCharacters = [];
-    // console.log(dinoCharacters)
     
     const loadDinos = () => {
         fetch('http://localhost:3000/dinosaurs')
@@ -126,12 +106,6 @@ hideSeekForm =() => {
                 }
             });
         document.querySelector('.container').addEventListener('submit', API.newDinoForm)           // submit form 
-        // Submit event is fired when a form is submitted.
-        // Note that submit is fired only on the form element, not the button or submit input. (Forms are submitted, not buttons.)
-
-        // We only need input values after someone hit submit.
-        // "after this form is submitted, it is calling form handler"
-        //API.newDinoForm is the form handler to grab all of the values for my inputs
     }
 // ############################################################################### 
 
@@ -144,8 +118,8 @@ getAllDinos = () => {
 
     getAllDinos.addEventListener("click", () => {
         const collectionDiv = document.querySelector("#dino-collection")
-        collectionDiv.innerHTML = ""   // Hide dino-collection first. 
-        API.addDinosaurs()             //then show all dinosaurs by clicking "All dinos" button in the browser
+        collectionDiv.innerHTML = ""    
+        API.addDinosaurs()             //Show all dinosaurs by clicking "All dinos" button in the browser
     });
 }
 // ############################################################################### 
@@ -182,14 +156,6 @@ addColorEffectEvent=() => {
 
         const head = document.querySelector("h1")
             head.addEventListener("mouseover", () => changeColor(head))
-            
-        // const headDiv = document.querySelector("#h1")
-        // const docBody = document.body
-        //     headDiv.addEventListener("click", ()=> changeBackgroundColor(docBody) )
-
-        // const categoryButtonText = document.getElementsByClassName("category-button")
-        // console.log(categoryButtonText)
-        //     categoryButtonText.addEventListener("mouseover", () => changeBackgroundColor(categoryButtonText))
 
         const searchBar = document.querySelector('input[name="searchBar"]')
             searchBar.addEventListener("mouseover", () => changeBackgroundColor(searchBar))
@@ -203,7 +169,7 @@ addColorEffectEvent=() => {
 // ############################################################################### 
 
 
-
+// ###########################scroll to Top ####################################### 
 scrollToTop = () => {
     const scrollToTopBtn = document.getElementById("scrollToTopBtn")
     const rootElement = document.documentElement
@@ -212,7 +178,7 @@ scrollToTop = () => {
     scrollToTop(e)
     )
 }
-
+// ############################################################################### 
 
 
  
@@ -230,6 +196,70 @@ scrollToTop = () => {
 
 
 
+
+   // const checkBoxTest = document.getElementById("checkBox");
+    // checkBoxTest.addEventListener("click", (e)=>{
+
+    //     //console.log("e.target", e.target)
+    //     e.preventDefault()
+    // })
+   
+
+    // document.getElementById("appTitle").classList.add("hidden")
+    // document.getElementById("appTitle").classList.remove("hidden")
+    
+    
+    // document.getElementById("era-container").innerHTML = ""   
+
+
+
+
+
+
+
+
+// const headDiv = document.querySelector("#h1")
+// const docBody = document.body
+//     headDiv.addEventListener("click", ()=> changeBackgroundColor(docBody) )
+
+// const categoryButtonText = document.getElementsByClassName("category-button")
+// console.log(categoryButtonText)
+//     categoryButtonText.addEventListener("mouseover", () => changeBackgroundColor(categoryButtonText))
+
+
+
+
+
+//filter, map
+// testFunction = () => {
+//     const testButton = document.getElementById("test")
+//     testButton.addEventListener("click", ()=> {
+//        const collectionDiv =  document.querySelector("#dino-collection")
+//         collectionDiv.innerHTML = ""
+//         fetchDinosByName();
+//     })
+// }
+
+// fetchDinosByName = () => {
+//     fetch("http://localhost:3000/dinosaurs")                               
+//     .then(response => response.json()) 
+//     .then(dinosaurArray => { console.log(dinosaurArray.length)
+//     const filtered = dinosaurArray.filter(dinosaur =>  //console.log(dinosaur.name)
+//                 dinosaur.name.length > 10)
+//                 console.log("filtered dinos",filtered, filtered.length)
+//                 const result = filtered.map(filteredDino => {
+//                     return `
+//                     <div id=dinosaurTest>
+//                         <p><img src="${filteredDino.image}" alt="${filteredDino.name}" style="width:150px;height:150px;" /></p>
+//                         <p>name: ${filteredDino.name}</p>
+//                         <p>diets: ${filteredDino.diets}</p>
+//                     </div>
+//                     `
+//                 }).join("")
+//                 console.log(result)
+//         document.querySelector("#testDiv").innerHTML = result
+//     })
+// }
 
 
 
