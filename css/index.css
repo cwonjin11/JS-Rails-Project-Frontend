@@ -366,7 +366,7 @@ form {
 
 
 #dinosaurTest {
-    opacity: .8;
+    /* opacity: .8; */
     background-color: #ddd;
     padding: 1rem;
     margin-bottom: 1rem;

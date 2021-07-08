@@ -174,13 +174,13 @@ class Dinosaur{
         <!-- <div class="flip-card"> -->
                 <div class="flip-card-inner">
                     <div class="flip-card-front" >
-                        <img src=${this.image} class="dino-icon" />
+                        <img src=${this.image} class="dino-icon" id="dino${this.id}" />
                         <h2>${this.name}</h2>
                        
                     </div>
 
                     <div class="flip-card-back" >
-                        <h3 style="color: #fdc52c;">${this.name}</h3>
+                        <h3 id="name${this.id}" style="color: #fdc52c;">${this.name}</h3>
                         Diet : <p style="display:inline" class="diet">${this.diets}</p><br>
                         <!-- <p>period : ${this.mezosoic_era_id}</p> -->
                         Period : <p data-id="${this.mezosoic_era_id}" style="display:inline" class="period">${this.mezosoic_era_id=eraName}</p><br>

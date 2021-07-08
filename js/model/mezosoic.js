@@ -39,7 +39,7 @@ class MezosoicEra{
     eraHTML(){
         return `
         <!-- <h2> ${this.period} </h2> -->
-        <button type="button" class="category-button" data-id=${this.id}>${this.period} </button>
+        <button type="button" class="category-button" data-id=${this.id} id="era${this.id}">${this.period} </button>
             `
     }
 
